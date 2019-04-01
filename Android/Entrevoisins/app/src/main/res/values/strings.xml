@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Entrevoisins</string>
+    <string name="tab_neighbour_title">My neighbours</string>
+    <string name="tab_favorites_title">Favorites</string>
+</resources>
