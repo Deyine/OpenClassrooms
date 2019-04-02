@@ -8,20 +8,25 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
+import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.List;
+
 
 public class NeighbourFragment extends Fragment {
 
     private NeighbourApiService mApiService;
+    private List<Neighbour> mNeighbours;
+    private RecyclerView mRecyclerView;
+
 
     /**
      * Create and return a new instance
@@ -43,10 +48,18 @@ public class NeighbourFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
         Context context = view.getContext();
-        RecyclerView recyclerView = (RecyclerView) view;
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mApiService.getNeighbours()));
+        mRecyclerView = (RecyclerView) view;
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        initList();
         return view;
+    }
+
+    /**
+     * Init the List of neighbours
+     */
+    private void initList() {
+        mNeighbours = mApiService.getNeighbours();
+        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
     }
 
     @Override
@@ -67,6 +80,7 @@ public class NeighbourFragment extends Fragment {
      */
     @Subscribe
     void onDeleteNeighbour(DeleteNeighbourEvent event) {
-        Toast.makeText(getContext(), "Deleting ...", Toast.LENGTH_LONG).show();
+        mApiService.deleteNeighbour(event.neighbour);
+        initList();
     }
 }

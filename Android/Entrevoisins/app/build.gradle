@@ -37,9 +37,13 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
+    // EVENT BUS
     implementation 'org.greenrobot:eventbus:3.1.1'
 
+    // UNIT TEST
     testImplementation 'junit:junit:4.12'
+    testImplementation 'org.hamcrest:java-hamcrest:2.0.0.0'
+    // INSTRUMENTATION TEST
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
