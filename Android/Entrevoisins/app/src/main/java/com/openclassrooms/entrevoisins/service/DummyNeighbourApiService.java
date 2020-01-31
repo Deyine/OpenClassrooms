@@ -27,4 +27,13 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     public void deleteNeighbour(Neighbour neighbour) {
         neighbours.remove(neighbour);
     }
+
+    /**
+     * {@inheritDoc}
+     * @param neighbour
+     */
+    @Override
+    public void createNeighbour(Neighbour neighbour) {
+        neighbours.add(neighbour);
+    }
 }
