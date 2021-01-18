@@ -25,4 +25,13 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void getIncomingIntent(){
+        if (getIntent().hasExtra("neighbour_AvatarUrl") && getIntent().hasExtra("neighbour_Name") &&  getIntent().hasExtra("neighbour_AboutMe") && getIntent().hasExtra("neighbour_PhoneNumber")){
+            String imageUrl = getIntent().getStringExtra("neighbour_AvatarUrl");
+            String neighbourName = getIntent().getStringExtra("neighbour_Name");
+            String neighbourAboutMe = getIntent().getStringExtra("neighbour_AboutMe");
+            String neighnourPhone = getIntent().getStringExtra("neighbour_PhoneNumber");
+        }
+    }
 }
