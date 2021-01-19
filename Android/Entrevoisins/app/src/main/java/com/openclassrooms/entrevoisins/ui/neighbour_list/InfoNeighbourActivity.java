@@ -3,14 +3,13 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
 
 public class InfoNeighbourActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
