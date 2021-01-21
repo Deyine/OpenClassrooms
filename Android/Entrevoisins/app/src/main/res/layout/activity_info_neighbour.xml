@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/buttonBack"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
@@ -22,6 +23,21 @@
         app:layout_constraintVertical_bias="0.137"
         tools:src="@tools:sample/avatars" />
 
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="224dp"
+        android:layout_marginEnd="180dp"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -44,8 +60,8 @@
             app:cardElevation="30dp">
 
             <android.support.constraint.ConstraintLayout
-                android:layout_width="361dp"
-                android:layout_height="108dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 tools:layout_editor_absoluteX="1dp"
                 tools:layout_editor_absoluteY="1dp">
 
@@ -53,7 +69,8 @@
                     android:id="@+id/nameNeighbourg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="29dp"
                     android:text="Name"
                     android:textColor="#090909"
@@ -67,16 +84,27 @@
                     android:id="@+id/nameLyt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="24dp"
+                    android:visibility="visible"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="29dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="13dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nameNeighbourg"
+                    app:srcCompat="@drawable/ic_baseline_local_phone_24" />
+
                 <TextView
                     android:id="@+id/TextAdresseNeighbour"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:drawableLeft="@drawable/ic_baseline_room_24"
+                    android:layout_width="309dp"
+                    android:layout_height="23dp"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginTop="12dp"
                     android:text="Adresse"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/nameLyt" />
@@ -85,11 +113,23 @@
                     android:id="@+id/phoneNeighbour"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:drawableLeft="@drawable/ic_baseline_local_phone_24"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginTop="24dp"
                     android:text="Phone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/TextAdresseNeighbour" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="27dp"
+                    android:layout_height="23dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toStartOf="@+id/TextAdresseNeighbour"
+                    app:layout_constraintHorizontal_bias="0.111"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView"
+                    app:srcCompat="@drawable/ic_baseline_room_24" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -132,6 +172,8 @@
                     android:id="@+id/textViewAboutMe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="A propos de moi"
                     android:textColor="#000000"
                     android:textSize="24sp"
@@ -143,8 +185,8 @@
 
                 <TextView
                     android:id="@+id/textViewAboutMeLyt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="366dp"
+                    android:layout_height="12dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textViewAboutMe" />
 
@@ -164,17 +206,16 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonFavories"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingButtonFavorie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
-        android:background="#FFFFFF"
-        app:icon="@drawable/ic_baseline_star_border_yellow_24"
-        app:iconTint="#FFFCFC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
+        android:layout_marginStart="332dp"
+        android:layout_marginTop="260dp"
+        android:clickable="true"
+        app:backgroundTint="#F1F1F1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_star_border_yellow_24" />
 
 </android.support.constraint.ConstraintLayout>
