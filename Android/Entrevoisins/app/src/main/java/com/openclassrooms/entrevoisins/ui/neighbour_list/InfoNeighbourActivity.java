@@ -1,14 +1,41 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.service.DummyNeighbourApiService;
+
+import org.w3c.dom.Text;
+
+import java.util.List;
+
+import butterknife.OnClick;
 
 public class InfoNeighbourActivity extends AppCompatActivity {
+
+    //Find textView and Image
+
+    private DummyNeighbourApiService mApiService;
+
+    private TextView name;
+    private TextView phone;
+    private TextView auboutMe;
+    private TextView adresse;
+    private TextView nameTitre;
+    private ImageView imageAvatar;
+
+
+
+
 
 
     @Override
@@ -39,26 +66,29 @@ public class InfoNeighbourActivity extends AppCompatActivity {
             String neighnourPhone = getIntent().getStringExtra("neighbour_PhoneNumber");
             String neighbourAdresse = getIntent().getStringExtra("neighbour_Adresse");
 
-            //Find textView and Image
-            TextView name = findViewById(R.id.nameNeighbourg);
-            TextView phone = findViewById(R.id.phoneNeighbour);
-            TextView auboutMe = findViewById(R.id.textAboutMe);
-            TextView adresse = findViewById(R.id.TextAdresseNeighbour);
+
+             name = findViewById(R.id.nameNeighbourg);
+             nameTitre = findViewById(R.id.textViewName);
+             phone = findViewById(R.id.phoneNeighbour);
+             auboutMe = findViewById(R.id.textAboutMe);
+             adresse = findViewById(R.id.TextAdresseNeighbour);
 
             // Set Texte and Image
             auboutMe.setText(neighbourAboutMe);
             name.setText(neighbourName);
+            nameTitre.setText(neighbourName);
             phone.setText(neighnourPhone);
             adresse.setText(neighbourAdresse);
 
-            ImageView imageView = findViewById(R.id.neighbour_Avatar);
+            imageAvatar = findViewById(R.id.neighbour_Avatar);
 
             Glide.with(this)
                     .asBitmap()
                     .load(imageUrl)
-                    .into(imageView);
+                    .into(imageAvatar);
         }
     }
+
 
 
 }

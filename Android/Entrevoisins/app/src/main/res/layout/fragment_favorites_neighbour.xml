@@ -3,12 +3,4 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.neighbour_list.fragment_favorites_neighbour">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="This is Favorites Pages" />
-
-</FrameLayout>
+    tools:context=".ui.neighbour_list.fragment_favorites_neighbour"/>
