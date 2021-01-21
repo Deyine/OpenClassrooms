@@ -32,18 +32,22 @@ public class InfoNeighbourActivity extends AppCompatActivity {
     private TextView adresse;
     private TextView nameTitre;
     private ImageView imageAvatar;
-
-
-
-
+    private ImageButton btnBack;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_neighbour);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().hide();
         getIncomingIntent();
+        btnBack = findViewById(R.id.buttonBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
