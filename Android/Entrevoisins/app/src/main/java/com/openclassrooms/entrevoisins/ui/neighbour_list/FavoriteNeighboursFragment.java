@@ -23,14 +23,14 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fragment_favorites_neighbour#newInstance} factory method to
+ * Use the {@link FavoriteNeighboursFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_favorites_neighbour extends Fragment {
+public class FavoriteNeighboursFragment extends Fragment {
 
-    private NeighbourApiService mApiService;
-    private List<Neighbour> mNeighbours;
-    private RecyclerView mRecyclerView;
+    private NeighbourApiService mFavApiService;
+    private List<Neighbour> mFavNeighbour;
+    private RecyclerView mFavRecyclerView;
 
 
     /**
@@ -45,7 +45,7 @@ public class fragment_favorites_neighbour extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mApiService = DI.getNeighbourApiService();
+        mFavApiService = DI.getNeighbourApiService();
     }
 
     @Override
@@ -53,9 +53,9 @@ public class fragment_favorites_neighbour extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
         Context context = view.getContext();
-        mRecyclerView = (RecyclerView) view;
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        mFavRecyclerView = (RecyclerView) view;
+        mFavRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        mFavRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         return view;
     }
 
@@ -63,8 +63,8 @@ public class fragment_favorites_neighbour extends Fragment {
      * Init the List of neighbours
      */
     private void initList() {
-        mNeighbours = mApiService.getNeighbours();
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
+        mFavNeighbour = mFavApiService.getFavoriteNeighbours();
+        mFavRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mFavNeighbour));
     }
 
     @Override
@@ -91,7 +91,7 @@ public class fragment_favorites_neighbour extends Fragment {
      */
     @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
-        mApiService.deleteNeighbour(event.neighbour);
+        mFavApiService.deleteNeighbour(event.neighbour);
         initList();
     }
 }

@@ -24,7 +24,7 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new NeighbourFragment();
             case 1:
-                return new fragment_favorites_neighbour();
+                return new FavoriteNeighboursFragment();
         }
         return null;
     }
