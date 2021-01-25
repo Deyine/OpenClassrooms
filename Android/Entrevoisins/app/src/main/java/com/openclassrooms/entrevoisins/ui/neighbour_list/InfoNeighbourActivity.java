@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.DummyNeighbourApiService;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
@@ -41,6 +42,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
     private Boolean isFavorite;
     private NeighbourApiService mFavApiService;
     private Neighbour neighbour;
+    private String imageUrl;
 
 
 
@@ -51,6 +53,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         getIncomingIntent();
         fabOnclickListner();
+        mFavApiService = DI.getNeighbourApiService();
 
 
     }
@@ -58,7 +61,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
     private void getIncomingIntent(){
         // Research if we have element in Intent
         if (getIntent().hasExtra("neighbour_AvatarUrl") && getIntent().hasExtra("neighbour_Name") &&  getIntent().hasExtra("neighbour_AboutMe") && getIntent().hasExtra("neighbour_PhoneNumber") && getIntent().hasExtra("neighbour_Adresse")){
-            String imageUrl = getIntent().getStringExtra("neighbour_AvatarUrl");
+            imageUrl = getIntent().getStringExtra("neighbour_AvatarUrl");
             String neighbourName = getIntent().getStringExtra("neighbour_Name");
             String neighbourAboutMe = getIntent().getStringExtra("neighbour_AboutMe");
             String neighnourPhone = getIntent().getStringExtra("neighbour_PhoneNumber");
@@ -66,7 +69,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
 
             isFavorite = getIntent().getBooleanExtra("neighbour_isFavorite",false);
 
-            neighbour = new Neighbour(System.currentTimeMillis(),neighbourName,imageUrl,neighbourAdresse,neighnourPhone,neighbourAboutMe,isFavorite);
+
 
 
              name = findViewById(R.id.nameNeighbourg);
@@ -132,7 +135,9 @@ public class InfoNeighbourActivity extends AppCompatActivity {
     }
 
     private void addFavoriteNeighbour(View view) {
-        //mFavApiService.addFavoriteNeighbour(neighbour);
+        neighbour = new Neighbour(System.currentTimeMillis(),name.getText().toString(),imageUrl,adresse.getText().toString(),phone.getText().toString(),auboutMe.getText().toString(),isFavorite);
+        mFavApiService.addFavoriteNeighbour(neighbour);
+        mFavApiService.deleteNeighbour(neighbour);
         isFavorite = true;
         Snackbar.make(view, "Vous venez d'ajouter " + name.getText() + " à vos voisins favoris!", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
@@ -142,7 +147,8 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         Snackbar.make(view, "Vous venez de retirer " + name.getText() + " de vos voisins favoris!", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
         isFavorite = false;
-        //mFavApiService.deleteFavoriteNeighbour(neighbour);
+        mFavApiService.deleteFavoriteNeighbour(neighbour);
+        mFavApiService.createNeighbour(neighbour);
     }
 
 }
