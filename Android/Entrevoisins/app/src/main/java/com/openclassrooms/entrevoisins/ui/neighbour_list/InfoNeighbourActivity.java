@@ -61,23 +61,21 @@ public class InfoNeighbourActivity extends AppCompatActivity {
     private void getIncomingIntent(){
         // Research if we have element in Intent
         if (getIntent().hasExtra("neighbour_AvatarUrl") && getIntent().hasExtra("neighbour_Name") &&  getIntent().hasExtra("neighbour_AboutMe") && getIntent().hasExtra("neighbour_PhoneNumber") && getIntent().hasExtra("neighbour_Adresse")){
-            imageUrl = getIntent().getStringExtra("neighbour_AvatarUrl");
             String neighbourName = getIntent().getStringExtra("neighbour_Name");
-            String neighbourAboutMe = getIntent().getStringExtra("neighbour_AboutMe");
-            String neighnourPhone = getIntent().getStringExtra("neighbour_PhoneNumber");
+            imageUrl = getIntent().getStringExtra("neighbour_AvatarUrl");
             String neighbourAdresse = getIntent().getStringExtra("neighbour_Adresse");
+            String neighnourPhone = getIntent().getStringExtra("neighbour_PhoneNumber");
+            String neighbourAboutMe = getIntent().getStringExtra("neighbour_AboutMe");
+            isFavorite = getIntent().getBooleanExtra("neighbour_isFavorite",true);
 
-            isFavorite = getIntent().getBooleanExtra("neighbour_isFavorite",false);
+            neighbour = new Neighbour(System.currentTimeMillis(),neighbourName,imageUrl,neighbourAdresse,neighnourPhone,neighbourAboutMe,isFavorite);
 
-
-
-
-             name = findViewById(R.id.nameNeighbourg);
-             nameTitre = findViewById(R.id.textViewName);
-             phone = findViewById(R.id.phoneNeighbour);
-             auboutMe = findViewById(R.id.textAboutMe);
-             adresse = findViewById(R.id.TextAdresseNeighbour);
-             facebook = findViewById(R.id.textViewFaceBook);
+            name = findViewById(R.id.nameNeighbourg);
+            nameTitre = findViewById(R.id.textViewName);
+            phone = findViewById(R.id.phoneNeighbour);
+            auboutMe = findViewById(R.id.textAboutMe);
+            adresse = findViewById(R.id.TextAdresseNeighbour);
+            facebook = findViewById(R.id.textViewFaceBook);
 
             // Set Texte and Image
             auboutMe.setText(neighbourAboutMe);
@@ -108,7 +106,9 @@ public class InfoNeighbourActivity extends AppCompatActivity {
             btnBack.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     finish();
+
                 }
             });
         }
@@ -124,6 +124,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
                     btnFavorie.show();
                     addFavoriteNeighbour(v);
 
+
                 }else{
                     btnFavorie.setImageResource(R.drawable.ic_baseline_star_border_yellow_24);
                     btnFavorie.hide();
@@ -135,7 +136,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
     }
 
     private void addFavoriteNeighbour(View view) {
-        neighbour = new Neighbour(System.currentTimeMillis(),name.getText().toString(),imageUrl,adresse.getText().toString(),phone.getText().toString(),auboutMe.getText().toString(),isFavorite);
+
         mFavApiService.addFavoriteNeighbour(neighbour);
         mFavApiService.deleteNeighbour(neighbour);
         isFavorite = true;
