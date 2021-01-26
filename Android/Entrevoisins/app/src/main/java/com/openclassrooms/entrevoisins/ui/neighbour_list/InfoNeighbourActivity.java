@@ -1,5 +1,8 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +46,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
     private NeighbourApiService mFavApiService;
     private Neighbour neighbour;
     private String imageUrl;
+    private static final int NOTIF_ID = 123;
 
 
 
@@ -137,19 +141,50 @@ public class InfoNeighbourActivity extends AppCompatActivity {
 
     private void addFavoriteNeighbour(View view) {
 
+        Context context = InfoNeighbourActivity.this;
+
         mFavApiService.addFavoriteNeighbour(neighbour);
         mFavApiService.deleteNeighbour(neighbour);
         isFavorite = true;
         Snackbar.make(view, "Vous venez d'ajouter " + name.getText() + " à vos voisins favoris!", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
+
+
+        Notification notification = new Notification.Builder(context)
+                .setSmallIcon(R.mipmap.ic_launcher_round)     // drawable for API 26
+                .setWhen(System.currentTimeMillis())
+                .setAutoCancel(true)
+                .setContentTitle("Ajout Favorie")
+                .setContentText( name.getText() + " fait maintenant partie de vos favoris" )
+                .build();             // à partir de l'API 16
+
+        NotificationManager notifManager = (NotificationManager)
+                context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notifManager.notify( NOTIF_ID, notification );
+        Log.i( "MainActivity", "Notification launched" );
     }
 
     private void deleteFavoriteNeighbour(View view) {
+        Context context = InfoNeighbourActivity.this;
+
         Snackbar.make(view, "Vous venez de retirer " + name.getText() + " de vos voisins favoris!", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
         isFavorite = false;
         mFavApiService.deleteFavoriteNeighbour(neighbour);
         mFavApiService.createNeighbour(neighbour);
+
+        Notification notification = new Notification.Builder(context)
+                .setSmallIcon(R.mipmap.ic_launcher_round)     // drawable for API 26
+                .setWhen(System.currentTimeMillis())
+                .setAutoCancel(true)
+                .setContentTitle("Suppression Favorie")
+                .setContentText( name.getText() + " ne fait plus partie de vos favoris" )
+                .build();             // à partir de l'API 16
+
+        NotificationManager notifManager = (NotificationManager)
+                context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notifManager.notify( NOTIF_ID, notification );
+        Log.i( "MainActivity", "Notification launched" );
     }
 
 }
