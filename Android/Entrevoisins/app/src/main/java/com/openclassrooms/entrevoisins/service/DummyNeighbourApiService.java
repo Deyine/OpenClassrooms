@@ -14,7 +14,7 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
 
 
     // Create List of favorie
-    private List<Neighbour> neighboursFavorites = new ArrayList<Neighbour>();
+    private List<Neighbour> neighboursFavorites = new ArrayList<>();
 
     /**
      * {@inheritDoc}

@@ -7,8 +7,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -17,7 +15,6 @@ import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
-import com.openclassrooms.entrevoisins.service.DummyNeighbourApiService;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 import org.w3c.dom.Text;
@@ -31,8 +28,6 @@ import butterknife.OnClick;
 public class InfoNeighbourActivity extends AppCompatActivity {
 
     //Find textView and Image
-
-
     private TextView name;
     private TextView phone;
     private TextView auboutMe;
@@ -49,7 +44,6 @@ public class InfoNeighbourActivity extends AppCompatActivity {
     private static final int NOTIF_ID = 123;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +52,6 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         getIncomingIntent();
         fabOnclickListner();
         mFavApiService = DI.getNeighbourApiService();
-
-
     }
 
     private void getIncomingIntent(){
@@ -109,11 +101,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
             btnBack = findViewById(R.id.buttonBack);
             btnBack.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-
-                    finish();
-
-                }
+                public void onClick(View v) { finish(); }
             });
         }
     }
@@ -127,8 +115,6 @@ public class InfoNeighbourActivity extends AppCompatActivity {
                     btnFavorie.hide();
                     btnFavorie.show();
                     addFavoriteNeighbour(v);
-
-
                 }else{
                     btnFavorie.setImageResource(R.drawable.ic_baseline_star_border_yellow_24);
                     btnFavorie.hide();
@@ -144,11 +130,9 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         Context context = InfoNeighbourActivity.this;
 
         mFavApiService.addFavoriteNeighbour(neighbour);
-        mFavApiService.deleteNeighbour(neighbour);
         isFavorite = true;
         Snackbar.make(view, "Vous venez d'ajouter " + name.getText() + " à vos voisins favoris!", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-
 
         Notification notification = new Notification.Builder(context)
                 .setSmallIcon(R.mipmap.ic_launcher_round)     // drawable for API 26
@@ -161,7 +145,6 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         NotificationManager notifManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
         notifManager.notify( NOTIF_ID, notification );
-        Log.i( "MainActivity", "Notification launched" );
     }
 
     private void deleteFavoriteNeighbour(View view) {
@@ -171,7 +154,6 @@ public class InfoNeighbourActivity extends AppCompatActivity {
                 .setAction("Action", null).show();
         isFavorite = false;
         mFavApiService.deleteFavoriteNeighbour(neighbour);
-        mFavApiService.createNeighbour(neighbour);
 
         Notification notification = new Notification.Builder(context)
                 .setSmallIcon(R.mipmap.ic_launcher_round)     // drawable for API 26
@@ -179,12 +161,10 @@ public class InfoNeighbourActivity extends AppCompatActivity {
                 .setAutoCancel(true)
                 .setContentTitle("Suppression Favorie")
                 .setContentText( name.getText() + " ne fait plus partie de vos favoris" )
-                .build();             // à partir de l'API 16
+                .build();
 
         NotificationManager notifManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
         notifManager.notify( NOTIF_ID, notification );
-        Log.i( "MainActivity", "Notification launched" );
     }
-
 }
