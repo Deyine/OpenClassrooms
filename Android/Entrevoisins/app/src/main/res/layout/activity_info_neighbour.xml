@@ -84,19 +84,19 @@
                     android:id="@+id/imageLyt"
                     android:layout_width="389dp"
                     android:layout_height="1dp"
-                    android:layout_marginTop="48dp"
-                    android:background="#E6E0E0"
+                    android:layout_marginTop="52dp"
+                    android:background="#F1EFEF"
                     android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/divider_horizontal_textfield"
-                    tools:srcCompat="@android:drawable/list_selector_background" />
+                    app:srcCompat="@android:drawable/menuitem_background" />
 
                 <ImageView
                     android:id="@+id/imageViewAdresse"
                     android:layout_width="26dp"
-                    android:layout_height="23dp"
+                    android:layout_height="26dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="24dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -106,9 +106,9 @@
                 <ImageView
                     android:id="@+id/imageViewPhone"
                     android:layout_width="26dp"
-                    android:layout_height="22dp"
+                    android:layout_height="26dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintEnd_toStartOf="@+id/TextAdresseNeighbour"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -117,20 +117,20 @@
 
                 <TextView
                     android:id="@+id/TextAdresseNeighbour"
-                    android:layout_width="297dp"
-                    android:layout_height="19dp"
+                    android:layout_width="294dp"
+                    android:layout_height="26dp"
                     android:layout_marginStart="52dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:text="Adresse"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageLyt" />
 
                 <TextView
                     android:id="@+id/phoneNeighbour"
-                    android:layout_width="298dp"
-                    android:layout_height="23dp"
+                    android:layout_width="294dp"
+                    android:layout_height="26dp"
                     android:layout_marginStart="52dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="16dp"
                     android:text="Phone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/TextAdresseNeighbour" />
@@ -138,7 +138,7 @@
                 <ImageView
                     android:id="@+id/imageViewFaceBook"
                     android:layout_width="26dp"
-                    android:layout_height="24dp"
+                    android:layout_height="26dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="20dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -147,8 +147,8 @@
 
                 <TextView
                     android:id="@+id/textViewFaceBook"
-                    android:layout_width="299dp"
-                    android:layout_height="25dp"
+                    android:layout_width="294dp"
+                    android:layout_height="26dp"
                     android:layout_marginStart="52dp"
                     android:layout_marginTop="20dp"
                     android:text="www.Facebook.com/"
@@ -163,7 +163,7 @@
 
     <LinearLayout
         android:id="@+id/aboutMeLayout"
-        android:layout_width="377dp"
+        android:layout_width="368dp"
         android:layout_height="158dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="20dp"
@@ -189,7 +189,7 @@
                     android:layout_width="389dp"
                     android:layout_height="1dp"
                     android:layout_marginTop="52dp"
-                    android:background="#EAE5E5"
+                    android:background="#EFEBEB"
                     android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
