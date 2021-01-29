@@ -134,7 +134,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
 
         mFavApiService.addFavoriteNeighbour(neighbour);
         isFavorite = true;
-        Snackbar.make(view, "Vous venez d'ajouter " + name.getText() + " à vos voisins favoris!", Snackbar.LENGTH_LONG)
+        Snackbar.make(view, "Vous venez d'ajouter " + name.getText() + " à vos voisins favoris !", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
 
         Notification notification = new Notification.Builder(context)
@@ -153,7 +153,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
     private void deleteFavoriteNeighbour(View view) {
         Context context = InfoNeighbourActivity.this;
 
-        Snackbar.make(view, "Vous venez de retirer " + name.getText() + " de vos voisins favoris!", Snackbar.LENGTH_LONG)
+        Snackbar.make(view, "Vous venez de retirer " + name.getText() + " de vos voisins favoris !", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
         isFavorite = false;
         mFavApiService.deleteFavoriteNeighbour(neighbour);
