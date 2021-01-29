@@ -13,9 +13,6 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     private List<Neighbour> neighbours = DummyNeighbourGenerator.generateNeighbours();
 
 
-    // Create List of favorie
-    private List<Neighbour> neighboursFavorites = new ArrayList<>();
-
     /**
      * {@inheritDoc}
      */
@@ -44,7 +41,13 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
 
     @Override
     public List<Neighbour> getFavoriteNeighbours() {
-        return neighboursFavorites;
+        List<Neighbour> favoriteList = new ArrayList<>();
+        for (Neighbour neighbour : getNeighbours()) {
+            if (neighbour.isFavorite()) {
+                favoriteList.add(neighbour);
+            }
+        }
+        return favoriteList;
     }
 
     /**
@@ -54,9 +57,11 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
 
     @Override
     public void addFavoriteNeighbour(Neighbour neighbour) {
-        neighbour.setFavorite(true);
-        neighboursFavorites.add(neighbour);
-
+        for (Neighbour neighbour1 : getNeighbours()) {
+            if (neighbour.equals(neighbour1)) {
+                neighbour1.setFavorite(true);
+            }
+        }
     }
 
     /**
@@ -65,9 +70,12 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
      */
 
     @Override
-    public void deleteFavoriteNeighbour(Neighbour neighbour) {
-        neighbour.setFavorite(false);
-        neighboursFavorites.remove(neighbour);
+    public void deleteFavoriteNeighbour(Neighbour neighbourfav) {
+        for (Neighbour neighbour1 : getNeighbours()) {
+            if (neighbourfav.equals(neighbour1)) {
+                neighbour1.setFavorite(false);
+            }
+        }
     }
 
 }

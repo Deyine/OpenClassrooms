@@ -57,6 +57,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
     private void getIncomingIntent(){
         // Research if we have element in Intent
         if (getIntent().hasExtra("neighbour_AvatarUrl") && getIntent().hasExtra("neighbour_Name") &&  getIntent().hasExtra("neighbour_AboutMe") && getIntent().hasExtra("neighbour_PhoneNumber") && getIntent().hasExtra("neighbour_Adresse")){
+            Long id = getIntent().getLongExtra("neighbour_Id",System.currentTimeMillis());
             String neighbourName = getIntent().getStringExtra("neighbour_Name");
             imageUrl = getIntent().getStringExtra("neighbour_AvatarUrl");
             String neighbourAdresse = getIntent().getStringExtra("neighbour_Adresse");
@@ -64,7 +65,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
             String neighbourAboutMe = getIntent().getStringExtra("neighbour_AboutMe");
             isFavorite = getIntent().getBooleanExtra("neighbour_isFavorite",true);
 
-            neighbour = new Neighbour(System.currentTimeMillis(),neighbourName,imageUrl,neighbourAdresse,neighnourPhone,neighbourAboutMe,isFavorite);
+            neighbour = new Neighbour(id,neighbourName,imageUrl,neighbourAdresse,neighnourPhone,neighbourAboutMe,isFavorite);
 
             name = findViewById(R.id.nameNeighbourg);
             nameTitre = findViewById(R.id.textViewName);
@@ -87,6 +88,8 @@ public class InfoNeighbourActivity extends AppCompatActivity {
                     .asBitmap()
                     .load(imageUrl)
                     .into(imageAvatar);
+
+
 
             btnFavorie = findViewById(R.id.floatingButtonFavorie);
             if (isFavorite) {

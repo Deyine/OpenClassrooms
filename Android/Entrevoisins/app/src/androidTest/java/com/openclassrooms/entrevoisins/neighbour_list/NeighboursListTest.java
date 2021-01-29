@@ -1,14 +1,11 @@
-
 package com.openclassrooms.entrevoisins.neighbour_list;
 
-import android.support.test.espresso.ViewAssertion;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.openclassrooms.entrevoisins.R;
-import com.openclassrooms.entrevoisins.ui.neighbour_list.InfoNeighbourActivity;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
 
@@ -21,12 +18,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
-
-
-
-
 import static org.hamcrest.core.IsNull.notNullValue;
 
 
@@ -45,10 +37,6 @@ public class NeighboursListTest {
     @Rule
     public ActivityTestRule<ListNeighbourActivity> mActivityRule =
             new ActivityTestRule(ListNeighbourActivity.class);
-
-    @Rule
-    public ActivityTestRule<ListNeighbourActivity> mActivityRuleInfo =
-            new ActivityTestRule(InfoNeighbourActivity.class);
 
     @Before
     public void setUp() {
@@ -78,10 +66,5 @@ public class NeighboursListTest {
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
         // Then : the number of element is 11
         onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
-    }
-
-    @Test
-    public void myNeighboursFavorieListIsEmpty(){
-        onView(ViewMatchers.withId(R.id.tabItem2)).check((ViewAssertion) withText("Favories"));
     }
 }

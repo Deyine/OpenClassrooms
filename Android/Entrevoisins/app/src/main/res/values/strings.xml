@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Entrevoisins</string>
     <string name="tab_neighbour_title">My neighbours</string>
-    <string name="tab_favorites_title">Favorites</string>
+    <string name="tab_favorites_title">Favories</string>
     <string name="activity_new_neighbour">New neighbour</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="todo">TODO</string>
