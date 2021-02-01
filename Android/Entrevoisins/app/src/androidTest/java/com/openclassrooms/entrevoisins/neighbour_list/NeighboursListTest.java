@@ -18,6 +18,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.List;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
@@ -37,7 +39,11 @@ public class NeighboursListTest {
 
     // This is fixed
     private static int ITEMS_COUNT = 12;
+    private static int ITEMS_EMPTY = 0;
     private Neighbour fakeInfoNeighbour;
+    private String facebookNeighbourg;
+    private String aboutMeNeighbour;
+
 
     private ListNeighbourActivity mActivity;
 
@@ -51,13 +57,10 @@ public class NeighboursListTest {
     public void setUp() {
         mActivity = mActivityRule.getActivity();
         assertThat(mActivity, notNullValue());
-        fakeInfoNeighbour = new Neighbour(1,
-                "Caroline",
-                "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-                "Saint-Pierre-du-Mont ; 5km",
-                "+33 6 86 57 90 14",
-                "Bonjour !Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner !J'aime les jeux de cartes tels la belote et le tarot..",
-                false);
+        fakeInfoNeighbour = new Neighbour(1, "Caroline", "https://i.pravatar.cc/150?u=a042581f4e29026704d", "Saint-Pierre-du-Mont ; 5km",
+                "+33 6 86 57 90 14",  "Bonjour !Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner !J'aime les jeux de cartes tels la belote et le tarot..",false);
+        facebookNeighbourg = "www.Facebook.com/" + fakeInfoNeighbour.getName();
+        aboutMeNeighbour = fakeInfoNeighbour.getAboutMe();
     }
 
     /**
@@ -86,13 +89,15 @@ public class NeighboursListTest {
 
     @Test
     public void myNeighboursFavorieListIsEmpty() {
-        onView(ViewMatchers.withId(R.id.tabItem2)).check(matches(ViewMatchers.withText("FAVORIES")));
-
+        // Given : We sitch to favorites List
+        onView(ViewMatchers.withText("FAVORIES")).perform(ViewActions.click());
+        // Then : the number of element is 0
+        onView(ViewMatchers.withId(R.id.list_fav_neighbours)).check(withItemCount(ITEMS_EMPTY));;
     }
 
     @Test
     public void myNeighbourDetail_TestFabSnack() {
-        // Given : We launch DetailNeighbourActivity with fake neighbour.
+        // Given : We launch InfoNeighbourActivity with fake neighbour.
         Intent intent = new Intent();
         intent.putExtra("neighbour_Id",fakeInfoNeighbour.getId());
         intent.putExtra("neighbour_Name",fakeInfoNeighbour.getName());
@@ -110,7 +115,19 @@ public class NeighboursListTest {
 
     }
 
-
-
+    @Test
+    public void myNeighbourDetail_CheckInfo(){
+        // Given : We Click on Caroline to open Detail of neighbour
+        onView(ViewMatchers.withId(R.id.list_neighbours))
+        .perform(RecyclerViewActions.actionOnItemAtPosition(0, ViewActions.click()));
+        // Then : We Check if data is correct
+        //onView(ViewMatchers.withId(R.id.neighbour_Avatar)).check(matches(ViewMatchers.wit);
+        onView(ViewMatchers.withId(R.id.textViewName)).check(matches(ViewMatchers.withText(fakeInfoNeighbour.getName())));
+        onView(ViewMatchers.withId(R.id.textViewNameNeighbourg)).check(matches(ViewMatchers.withText(fakeInfoNeighbour.getName())));
+        onView(ViewMatchers.withId(R.id.textAdresseNeighbour)).check(matches(ViewMatchers.withText(fakeInfoNeighbour.getAddress())));
+        onView(ViewMatchers.withId(R.id.textViewphoneNeighbour)).check(matches(ViewMatchers.withText(fakeInfoNeighbour.getPhoneNumber())));
+        onView(ViewMatchers.withId(R.id.textViewFaceBook)).check(matches(ViewMatchers.withText(facebookNeighbourg)));
+        //onView(ViewMatchers.withId(R.id.textViewAboutMe)).check(matches(ViewMatchers.withText(fakeInfoNeighbour.getAboutMe())));
+    }
 
 }

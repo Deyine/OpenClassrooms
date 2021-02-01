@@ -17,13 +17,6 @@ import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
-import org.w3c.dom.Text;
-
-import java.util.List;
-
-import butterknife.OnClick;
-
-
 
 public class InfoNeighbourActivity extends AppCompatActivity {
 
@@ -67,11 +60,11 @@ public class InfoNeighbourActivity extends AppCompatActivity {
 
             neighbour = new Neighbour(id,neighbourName,imageUrl,neighbourAdresse,neighnourPhone,neighbourAboutMe,isFavorite);
 
-            name = findViewById(R.id.nameNeighbourg);
+            name = findViewById(R.id.textViewNameNeighbourg);
             nameTitre = findViewById(R.id.textViewName);
-            phone = findViewById(R.id.phoneNeighbour);
+            phone = findViewById(R.id.textViewphoneNeighbour);
             auboutMe = findViewById(R.id.textAboutMe);
-            adresse = findViewById(R.id.TextAdresseNeighbour);
+            adresse = findViewById(R.id.textAdresseNeighbour);
             facebook = findViewById(R.id.textViewFaceBook);
 
             // Set Texte and Image

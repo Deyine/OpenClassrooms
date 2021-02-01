@@ -66,7 +66,7 @@
                 tools:layout_editor_absoluteY="1dp">
 
                 <TextView
-                    android:id="@+id/nameNeighbourg"
+                    android:id="@+id/textViewNameNeighbourg"
                     android:layout_width="361dp"
                     android:layout_height="29dp"
                     android:layout_marginStart="16dp"
@@ -75,7 +75,7 @@
                     android:text="Name"
                     android:textColor="#090909"
                     android:textSize="24sp"
-                    app:layout_constraintBottom_toTopOf="@+id/TextAdresseNeighbour"
+                    app:layout_constraintBottom_toTopOf="@+id/textAdresseNeighbour"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0" />
@@ -100,7 +100,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="24dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nameNeighbourg"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewNameNeighbourg"
                     app:srcCompat="@drawable/ic_baseline_room_24" />
 
                 <ImageView
@@ -109,14 +109,14 @@
                     android:layout_height="26dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
-                    app:layout_constraintEnd_toStartOf="@+id/TextAdresseNeighbour"
+                    app:layout_constraintEnd_toStartOf="@+id/textAdresseNeighbour"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageViewAdresse"
                     app:srcCompat="@drawable/ic_baseline_local_phone_24" />
 
                 <TextView
-                    android:id="@+id/TextAdresseNeighbour"
+                    android:id="@+id/textAdresseNeighbour"
                     android:layout_width="294dp"
                     android:layout_height="26dp"
                     android:layout_marginStart="52dp"
@@ -126,14 +126,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/imageLyt" />
 
                 <TextView
-                    android:id="@+id/phoneNeighbour"
+                    android:id="@+id/textViewphoneNeighbour"
                     android:layout_width="294dp"
                     android:layout_height="26dp"
                     android:layout_marginStart="52dp"
                     android:layout_marginTop="16dp"
                     android:text="Phone"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/TextAdresseNeighbour" />
+                    app:layout_constraintTop_toBottomOf="@+id/textAdresseNeighbour" />
 
                 <ImageView
                     android:id="@+id/imageViewFaceBook"
@@ -153,7 +153,7 @@
                     android:layout_marginTop="20dp"
                     android:text="www.Facebook.com/"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/phoneNeighbour" />
+                    app:layout_constraintTop_toBottomOf="@+id/textViewphoneNeighbour" />
 
             </android.support.constraint.ConstraintLayout>
 
