@@ -3,6 +3,8 @@
     <string name="tab_neighbour_title">My neighbours</string>
     <string name="tab_favorites_title">Favories</string>
     <string name="activity_new_neighbour">New neighbour</string>
+    <string name="notification_ajout_title">Ajout Favorie</string>
+    <string name="notification_supp_title">Supression Favorie</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="todo">TODO</string>
 </resources>
