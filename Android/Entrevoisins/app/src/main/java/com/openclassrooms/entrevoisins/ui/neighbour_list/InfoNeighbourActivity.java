@@ -131,7 +131,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
                 .setAction("Action", null).show();
 
         Notification notification = new Notification.Builder(context)
-                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setSmallIcon(R.drawable.ic_star_white_24dp)
                 .setWhen(System.currentTimeMillis())
                 .setAutoCancel(true)
                 .setContentTitle("Ajout Favorie")
@@ -152,7 +152,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         mFavApiService.deleteFavoriteNeighbour(neighbour);
 
         Notification notification = new Notification.Builder(context)
-                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setSmallIcon(R.drawable.ic_star_border_white_24dp)
                 .setWhen(System.currentTimeMillis())
                 .setAutoCancel(true)
                 .setContentTitle("Suppression Favorie")
