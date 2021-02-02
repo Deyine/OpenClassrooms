@@ -1,5 +1,7 @@
 package com.openclassrooms.entrevoisins.neighbour_list;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.action.ViewActions;
@@ -11,6 +13,7 @@ import android.support.test.uiautomator.UiDevice;
 import android.support.test.uiautomator.UiObject2;
 import android.support.test.uiautomator.Until;
 import android.support.test.uiautomator.By;
+
 
 
 import com.openclassrooms.entrevoisins.R;
@@ -49,28 +52,12 @@ public class NeighboursListTest {
     private Neighbour fakeInfoNeighbour;
     private String facebookNeighbourg;
     private String aboutMeNeighbour;
-    private static final String BASIC_SAMPLE_PACKAGE
-            = "com.example.android.testing.uiautomator.BasicSample";
     private static final int LAUNCH_TIMEOUT = 5000;
-    private static final String STRING_TO_BE_TYPED = "UiAutomator";
     private UiDevice device;
+    private int NotificationId = 123;
 
 
     private ListNeighbourActivity mActivity;
-
-    @Before
-    public void startMainActivityFromHomeScreen() {
-
-        // Start from the home screen
-        device.pressHome();
-
-        // Wait for launcher
-        final String launcherPackage = device.getLauncherPackageName();
-        assertThat(launcherPackage, notNullValue());
-        device.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)),
-                LAUNCH_TIMEOUT);
-
-    }
 
     @Rule
     public ActivityTestRule<ListNeighbourActivity> mActivityRule =
@@ -80,15 +67,12 @@ public class NeighboursListTest {
 
     @Before
     public void setUp() {
-        UiDevice mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         mActivity = mActivityRule.getActivity();
         assertThat(mActivity, notNullValue());
         fakeInfoNeighbour = new Neighbour(1, "Caroline", "https://i.pravatar.cc/150?u=a042581f4e29026704d", "Saint-Pierre-du-Mont ; 5km",
                 "+33 6 86 57 90 14",  "Bonjour !Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner !J'aime les jeux de cartes tels la belote et le tarot..",false);
         facebookNeighbourg = "www.Facebook.com/" + fakeInfoNeighbour.getName();
         aboutMeNeighbour = fakeInfoNeighbour.getAboutMe();
-        // Initialize UiDevice instance
-        device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
 
     }
 
@@ -109,17 +93,21 @@ public class NeighboursListTest {
     public void myNeighboursList_deleteAction_shouldRemoveItem() {
         // Given : We remove the element at position 2
         onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT));
+
         // When perform a click on a delete icon
         onView(ViewMatchers.withId(R.id.list_neighbours))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
+
         // Then : the number of element is 11
         onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
     }
 
     @Test
     public void myNeighboursFavorieListIsEmpty() {
+
         // Given : We sitch to favorites List
         onView(ViewMatchers.withText("FAVORIES")).perform(ViewActions.click());
+
         // Then : the number of element is 0
         onView(ViewMatchers.withId(R.id.list_fav_neighbours)).check(withItemCount(ITEMS_EMPTY));;
     }
@@ -136,8 +124,10 @@ public class NeighboursListTest {
         intent.putExtra("neighbour_Adresse",fakeInfoNeighbour.getAddress());
         intent.putExtra("neighbour_isFavorite",fakeInfoNeighbour.isFavorite());
         InfoNeighbourActivityTestRule.launchActivity(intent);
+
         // When perform click on fab to add favorite neighbour
         onView(withId(R.id.floatingButtonFavorie)).perform(ViewActions.click());
+
         // Then : We should have confirmation message on the snack
         onView(withId(android.support.design.R.id.snackbar_text))
                 .check(matches(ViewMatchers.withText("Vous venez d'ajouter Caroline à vos voisins favoris !")));
@@ -149,6 +139,7 @@ public class NeighboursListTest {
         // Given : We Click on Caroline to open Detail of neighbour
         onView(withId(R.id.list_neighbours))
         .perform(RecyclerViewActions.actionOnItemAtPosition(0, ViewActions.click()));
+
         // Then : We Check if data is correct
         onView(withId(R.id.textViewName)).check(matches(withText(fakeInfoNeighbour.getName())));
         onView(withId(R.id.textViewNameNeighbourg)).check(matches(withText(fakeInfoNeighbour.getName())));
@@ -163,21 +154,32 @@ public class NeighboursListTest {
         // Given : We click on Caroline to open detail
         onView(ViewMatchers.withId(R.id.list_neighbours))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, ViewActions.click()));
+
         // When perform click on fab to add favorite neighbour
         onView(withId(R.id.floatingButtonFavorie)).perform(ViewActions.click());
         // When Return to list
         onView(withId(R.id.buttonBack)).perform(ViewActions.click());
+
         // When click to tab view favories
         onView(ViewMatchers.withText("FAVORIES")).perform(ViewActions.click());
+
         // Then : the number of element is 11
         onView(ViewMatchers.withId(R.id.list_fav_neighbours)).check(withItemCount(ITEMS_EMPTY+1));
+        onView(ViewMatchers.withId(R.id.list_fav_neighbours))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, ViewActions.click()));
+
+        // When perform click on fab to add favorite neighbour
+        onView(withId(R.id.floatingButtonFavorie)).perform(ViewActions.click());
 
     }
 
     @Test
-    public void myNeighbourDetail_TestFabNotification(){
+    public void myNeighbourDetail_TestFabAddNotification(){
+        String expectedAppName = "Entrevoisins";
+        UiDevice uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         String expectedTitle = "Ajout Favorie";
-        String expectedText = "Caroline ";
+        String expectedText = "Caroline fait maintenant partie de vos favoris";
+
 
         // Given : We launch InfoNeighbourActivity with fake neighbour.
         Intent intent = new Intent();
@@ -189,15 +191,55 @@ public class NeighboursListTest {
         intent.putExtra("neighbour_Adresse",fakeInfoNeighbour.getAddress());
         intent.putExtra("neighbour_isFavorite",fakeInfoNeighbour.isFavorite());
         InfoNeighbourActivityTestRule.launchActivity(intent);
+
         // When perform click on fab to add favorite neighbour
         onView(withId(R.id.floatingButtonFavorie)).perform(ViewActions.click());
+
         // We open notification
-        device.openNotification();
-        UiObject2 title = device.findObject(By.text(expectedText));
-        UiObject2 text = device.findObject(By.textStartsWith(expectedText));
-        assertEquals(expectedTitle, title.toString());
-        assertTrue(text.equals(expectedText));
-        device.clearLastTraversedText();
+        uiDevice.openNotification();
+        uiDevice.wait(Until.hasObject(By.textStartsWith(expectedAppName)), 5);
+        UiObject2 title = uiDevice.findObject(By.text(expectedTitle));
+        UiObject2 texte = uiDevice.findObject(By.text(expectedText));
+
+        // Then : We check texte in notification
+        assertEquals(expectedTitle,title.getText());
+        assertEquals(expectedText,texte.getText());
+        uiDevice.click(990,460);
+
+        // We remove neighbour for other test after
+        onView(withId(R.id.floatingButtonFavorie)).perform(ViewActions.click());
     }
 
+    @Test
+    public void myNeighbourDetail_TestFabSuppNotification(){
+        String expectedAppName = "Entrevoisins";
+        UiDevice uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        String expectedTitle = "Suppression Favorie";
+        String expectedText = "Caroline ne fait plus partie de vos favoris";
+
+        // Given : We launch InfoNeighbourActivity with fake neighbour.
+        Intent intent = new Intent();
+        intent.putExtra("neighbour_Id",fakeInfoNeighbour.getId());
+        intent.putExtra("neighbour_Name",fakeInfoNeighbour.getName());
+        intent.putExtra("neighbour_AboutMe",fakeInfoNeighbour.getAboutMe());
+        intent.putExtra("neighbour_AvatarUrl",fakeInfoNeighbour.getAvatarUrl());
+        intent.putExtra("neighbour_PhoneNumber",fakeInfoNeighbour.getPhoneNumber());
+        intent.putExtra("neighbour_Adresse",fakeInfoNeighbour.getAddress());
+        intent.putExtra("neighbour_isFavorite",true);
+        InfoNeighbourActivityTestRule.launchActivity(intent);
+
+        // When perform click on fab to add favorite neighbour
+        onView(withId(R.id.floatingButtonFavorie)).perform(ViewActions.click());
+
+        // We open notification
+        uiDevice.openNotification();
+        uiDevice.wait(Until.hasObject(By.textStartsWith(expectedAppName)), 5);
+        UiObject2 title = uiDevice.findObject(By.text(expectedTitle));
+        UiObject2 texte = uiDevice.findObject(By.text(expectedText));
+
+        // Then : We check texte in notification
+        assertEquals(expectedTitle,title.getText());
+        assertEquals(expectedText,texte.getText());
+        uiDevice.click(990,460);
+    }
 }

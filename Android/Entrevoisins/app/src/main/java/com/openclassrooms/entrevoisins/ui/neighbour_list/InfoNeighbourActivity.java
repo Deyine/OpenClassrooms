@@ -131,12 +131,12 @@ public class InfoNeighbourActivity extends AppCompatActivity {
                 .setAction("Action", null).show();
 
         Notification notification = new Notification.Builder(context)
-                .setSmallIcon(R.mipmap.ic_launcher_round)     // drawable for API 26
+                .setSmallIcon(R.mipmap.ic_launcher_round)
                 .setWhen(System.currentTimeMillis())
                 .setAutoCancel(true)
                 .setContentTitle("Ajout Favorie")
                 .setContentText( name.getText() + " fait maintenant partie de vos favoris" )
-                .build();             // à partir de l'API 16
+                .build();
 
         NotificationManager notifManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -152,7 +152,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         mFavApiService.deleteFavoriteNeighbour(neighbour);
 
         Notification notification = new Notification.Builder(context)
-                .setSmallIcon(R.mipmap.ic_launcher_round)     // drawable for API 26
+                .setSmallIcon(R.mipmap.ic_launcher_round)
                 .setWhen(System.currentTimeMillis())
                 .setAutoCancel(true)
                 .setContentTitle("Suppression Favorie")
@@ -163,4 +163,6 @@ public class InfoNeighbourActivity extends AppCompatActivity {
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
         notifManager.notify( NOTIF_ID, notification );
     }
+
+
 }
