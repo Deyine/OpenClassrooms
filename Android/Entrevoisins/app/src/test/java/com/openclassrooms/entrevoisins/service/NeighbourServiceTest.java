@@ -44,6 +44,14 @@ public class NeighbourServiceTest {
     }
 
     @Test
+    public void AddNeighbourWithSuccess() {
+        service.getNeighbours().clear();
+        Neighbour neighbourToAdd = DummyNeighbourGenerator.DUMMY_NEIGHBOURS.get(0);
+        service.createNeighbour(neighbourToAdd);
+        assertTrue(service.getNeighbours().contains(neighbourToAdd));
+    }
+
+    @Test
     public void addFavoriteNeighbourWithSuccess() {
         service.getFavoriteNeighbours().clear();
         favoriteNeighbours = service.getFavoriteNeighbours();
