@@ -23,6 +23,7 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return new NeighbourFragment();
+                // Update for use fragment
             case 1:
                 return new FavoriteNeighboursFragment();
         }
@@ -34,7 +35,7 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
      * @return
      */
     @Override
-    //
+    // Add one page for favoris list
     public int getCount() {
         return 2;
     }

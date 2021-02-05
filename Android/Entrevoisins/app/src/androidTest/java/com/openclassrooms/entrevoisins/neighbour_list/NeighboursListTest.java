@@ -27,6 +27,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static android.support.test.espresso.matcher.ViewMatchers.hasContentDescription;
 import static org.junit.Assert.assertEquals;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -37,6 +38,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.core.IsNull.notNullValue;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
@@ -163,7 +165,7 @@ public class NeighboursListTest {
         // When click to tab view favories
         onView(ViewMatchers.withText("FAVORIES")).perform(ViewActions.click());
 
-        // Then : the number of element is 11
+        // Then : the number of element is 1
         onView(ViewMatchers.withId(R.id.list_fav_neighbours)).check(withItemCount(ITEMS_EMPTY+1));
         onView(ViewMatchers.withId(R.id.list_fav_neighbours))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, ViewActions.click()));

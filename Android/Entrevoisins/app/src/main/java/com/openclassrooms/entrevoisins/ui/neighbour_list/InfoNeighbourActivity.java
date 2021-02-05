@@ -14,8 +14,13 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
+import com.openclassrooms.entrevoisins.events.AddNeighbourgFavorisEvent;
+import com.openclassrooms.entrevoisins.events.DeleteNeighbourFavorisEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 
 public class InfoNeighbourActivity extends AppCompatActivity {
@@ -41,10 +46,20 @@ public class InfoNeighbourActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_neighbour);
-        getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mFavApiService = DI.getNeighbourApiService();
         getIncomingIntent();
         fabOnclickListner();
-        mFavApiService = DI.getNeighbourApiService();
+    }
+
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 
     private void getIncomingIntent(){
@@ -85,6 +100,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
 
 
             btnFavorie = findViewById(R.id.floatingButtonFavorie);
+            // We check if Neighbours is favorie or not
             if (isFavorite) {
                 btnFavorie.setImageResource(R.drawable.ic_baseline_star_yellow_24);
                 btnFavorie.hide();
@@ -94,14 +110,10 @@ public class InfoNeighbourActivity extends AppCompatActivity {
                 btnFavorie.hide();
                 btnFavorie.show();
             }
-            btnBack = findViewById(R.id.buttonBack);
-            btnBack.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) { finish(); }
-            });
+
         }
     }
-
+    //Click on favorie button
     private void fabOnclickListner(){
         btnFavorie.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,11 +133,13 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         });
     }
 
+    // Add new Neighbours in favoris list
     private void addFavoriteNeighbour(View view) {
 
         Context context = InfoNeighbourActivity.this;
 
-        mFavApiService.addFavoriteNeighbour(neighbour);
+        EventBus.getDefault().post(new AddNeighbourgFavorisEvent(neighbour));
+
         isFavorite = true;
         Snackbar.make(view, "Vous venez d'ajouter " + name.getText() + " à vos voisins favoris !", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
@@ -143,13 +157,14 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         notifManager.notify( NOTIF_ID, notification );
     }
 
+    // Delete Neighbours in favoris list
     private void deleteFavoriteNeighbour(View view) {
         Context context = InfoNeighbourActivity.this;
 
         Snackbar.make(view, "Vous venez de retirer " + name.getText() + " de vos voisins favoris !", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
         isFavorite = false;
-        mFavApiService.deleteFavoriteNeighbour(neighbour);
+        EventBus.getDefault().post(new DeleteNeighbourFavorisEvent(neighbour));
 
         Notification notification = new Notification.Builder(context)
                 .setSmallIcon(R.drawable.ic_star_border_white_24dp)
@@ -162,6 +177,17 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         NotificationManager notifManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
         notifManager.notify( NOTIF_ID, notification );
+    }
+
+    // Use Subscrise for Event (Use when we add or delte Neighbour)
+    @Subscribe
+    public void DeleteNeighbourFavorisEvent(DeleteNeighbourFavorisEvent event) {
+        mFavApiService.deleteFavoriteNeighbour(event.neighbour);
+    }
+
+    @Subscribe
+    public void AddNeighbourgFavorisEvent(AddNeighbourgFavorisEvent event) {
+        mFavApiService.addFavoriteNeighbour(event.neighbour);
     }
 
 

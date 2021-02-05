@@ -56,11 +56,11 @@ public class MyFavoritesNeighbourRecyclerViewAdapter extends RecyclerView.Adapte
             @Override
             public void onClick(View v) {
                 EventBus.getDefault().post(new DeleteNeighbourFavorisEvent(neighbour));
-                mFavApiService.deleteFavoriteNeighbour(neighbour);
                 notifyDataSetChanged();
             }
         });
 
+        // When we click on a personne we send all data for InfoActiviy
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

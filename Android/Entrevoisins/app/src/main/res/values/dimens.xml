@@ -5,4 +5,10 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="app_bar_height">333dp</dimen>
+    <dimen name="fab_width">65dp</dimen>
+    <dimen name="neighbour_title">26sp</dimen>
+    <dimen name="neighbour_text_info">14sp</dimen>
+    <dimen name="cardview_padding">16dp</dimen>
+    <dimen name="title_name_padding">23dp</dimen>
 </resources>
