@@ -9,33 +9,19 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
-
         android:layout_width="match_parent"
-        android:layout_height="305dp">
+        android:fitsSystemWindows="true"
+        android:layout_height="303dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapseLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="visible"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
-            app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
-
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
-
-            <ImageView
-                android:id="@+id/neighbour_Avatar"
-                android:layout_width="411dp"
-                android:layout_height="304dp"
-                android:layout_marginBottom="470dp"
-                android:contentDescription="@string/todo"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.137"
-                tools:src="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/textViewName"
@@ -51,6 +37,20 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/neighbour_Avatar"
+                android:layout_width="411dp"
+                android:layout_height="304dp"
+                android:layout_marginBottom="470dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.137"
+                tools:src="@tools:sample/avatars" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

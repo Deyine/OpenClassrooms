@@ -3,11 +3,13 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -32,28 +34,37 @@ public class InfoNeighbourActivity extends AppCompatActivity {
     private TextView phone;
     private TextView auboutMe;
     private TextView adresse;
-    private TextView nameTitre;
     private TextView facebook;
     private ImageView imageAvatar;
-    private ImageButton btnBack;
+    private TextView nameTitre;
     private FloatingActionButton btnFavorie;
     private Boolean isFavorite;
     private NeighbourApiService mFavApiService;
     private Neighbour neighbour;
     private String imageUrl;
     private static final int NOTIF_ID = 123;
+    private Toolbar toolbar;
+    private CollapsingToolbarLayout collapsingToolbarLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_neighbour);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mFavApiService = DI.getNeighbourApiService();
         getIncomingIntent();
         fabOnclickListner();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home : {
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void onStart() {
@@ -80,21 +91,28 @@ public class InfoNeighbourActivity extends AppCompatActivity {
             neighbour = new Neighbour(id,neighbourName,imageUrl,neighbourAdresse,neighnourPhone,neighbourAboutMe,isFavorite);
 
             name = findViewById(R.id.textViewNameNeighbourg);
-            nameTitre = findViewById(R.id.textViewName);
             phone = findViewById(R.id.textViewphoneNeighbour);
             auboutMe = findViewById(R.id.textAboutMe);
             adresse = findViewById(R.id.textAdresseNeighbour);
             facebook = findViewById(R.id.textViewFaceBook);
+            nameTitre = findViewById(R.id.textViewName);
 
             // Set Texte and Image
             auboutMe.setText(neighbourAboutMe);
             name.setText(neighbourName);
-            nameTitre.setText(neighbourName);
             phone.setText(neighnourPhone);
             adresse.setText(neighbourAdresse);
             facebook.setText("www.Facebook.com/" + name.getText());
+            nameTitre.setText(neighbourName);
 
             imageAvatar = findViewById(R.id.neighbour_Avatar);
+
+            //Set Toolbar and text
+            toolbar = findViewById(R.id.toolbar);
+            collapsingToolbarLayout = findViewById(R.id.collapseLayout);
+
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             Glide.with(this)
                     .asBitmap()
