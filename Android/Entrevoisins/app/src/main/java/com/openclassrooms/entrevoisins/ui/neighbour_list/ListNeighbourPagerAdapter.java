@@ -23,7 +23,7 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return new NeighbourFragment();
-                // Update for use fragment
+                // Update for use fragment for favorie list
             case 1:
                 return new FavoriteNeighboursFragment();
         }

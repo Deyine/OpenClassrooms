@@ -112,6 +112,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
             collapsingToolbarLayout = findViewById(R.id.collapseLayout);
 
             setSupportActionBar(toolbar);
+            getSupportActionBar().setTitle(neighbourName);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             Glide.with(this)

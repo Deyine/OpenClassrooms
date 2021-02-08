@@ -52,6 +52,7 @@ public class MyFavoritesNeighbourRecyclerViewAdapter extends RecyclerView.Adapte
                 .apply(RequestOptions.circleCropTransform())
                 .into(holder.mNeighbourAvatar);
 
+        // When we click on deletebutton we send information for remove neighbourg only in list of favorie
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
