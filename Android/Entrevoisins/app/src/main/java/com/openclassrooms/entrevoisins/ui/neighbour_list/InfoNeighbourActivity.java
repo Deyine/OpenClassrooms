@@ -36,7 +36,6 @@ public class InfoNeighbourActivity extends AppCompatActivity {
     private TextView adresse;
     private TextView facebook;
     private ImageView imageAvatar;
-    private TextView nameTitre;
     private FloatingActionButton btnFavorie;
     private Boolean isFavorite;
     private NeighbourApiService mFavApiService;
@@ -95,7 +94,6 @@ public class InfoNeighbourActivity extends AppCompatActivity {
             auboutMe = findViewById(R.id.textAboutMe);
             adresse = findViewById(R.id.textAdresseNeighbour);
             facebook = findViewById(R.id.textViewFaceBook);
-            nameTitre = findViewById(R.id.textViewName);
 
             // Set Texte and Image
             auboutMe.setText(neighbourAboutMe);
@@ -103,7 +101,6 @@ public class InfoNeighbourActivity extends AppCompatActivity {
             phone.setText(neighnourPhone);
             adresse.setText(neighbourAdresse);
             facebook.setText("www.Facebook.com/" + name.getText());
-            nameTitre.setText(neighbourName);
 
             imageAvatar = findViewById(R.id.neighbour_Avatar);
 
