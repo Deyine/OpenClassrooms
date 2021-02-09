@@ -3,6 +3,7 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Handler;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,7 +12,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -90,10 +90,10 @@ public class InfoNeighbourActivity extends AppCompatActivity {
             neighbour = new Neighbour(id,neighbourName,imageUrl,neighbourAdresse,neighnourPhone,neighbourAboutMe,isFavorite);
 
             name = findViewById(R.id.textViewNameNeighbourg);
-            phone = findViewById(R.id.textViewphoneNeighbour);
-            auboutMe = findViewById(R.id.textAboutMe);
-            adresse = findViewById(R.id.textAdresseNeighbour);
-            facebook = findViewById(R.id.textViewFaceBook);
+            phone = findViewById(R.id.txtPhoneNeighbour);
+            auboutMe = findViewById(R.id.txtAboutMe);
+            adresse = findViewById(R.id.txtAdresseNeighbour);
+            facebook = findViewById(R.id.txtFaceBook);
 
             // Set Texte and Image
             auboutMe.setText(neighbourAboutMe);
@@ -164,6 +164,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         Snackbar.make(view, "Vous venez d'ajouter " + name.getText() + " à vos voisins favoris !", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
 
+        //Show notification when we add neighbour in favoris list
         Notification notification = new Notification.Builder(context)
                 .setSmallIcon(R.drawable.ic_star_white_24dp)
                 .setWhen(System.currentTimeMillis())
@@ -175,7 +176,16 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         NotificationManager notifManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
         notifManager.notify( NOTIF_ID, notification );
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                notifManager.cancelAll();
+            }
+        }, 3000);   //3 seconds
     }
+
+
 
     // Delete Neighbours in favoris list
     private void deleteFavoriteNeighbour(View view) {
@@ -186,6 +196,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         isFavorite = false;
         EventBus.getDefault().post(new DeleteNeighbourFavorisEvent(neighbour));
 
+        //Show notification when we remove neighbour in favoris list
         Notification notification = new Notification.Builder(context)
                 .setSmallIcon(R.drawable.ic_star_border_white_24dp)
                 .setWhen(System.currentTimeMillis())
@@ -197,9 +208,18 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         NotificationManager notifManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
         notifManager.notify( NOTIF_ID, notification );
+
+        // After 3 secondes we cancel all notification
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                notifManager.cancelAll();
+            }
+        }, 3000);   //3 seconds
+
     }
 
-    // Use Subscrise for Event (Use when we add or delte Neighbour)
+    // Use Subscrise for Event (Use when we add or delete Neighbour)
     @Subscribe
     public void DeleteNeighbourFavorisEvent(DeleteNeighbourFavorisEvent event) {
         mFavApiService.deleteFavoriteNeighbour(event.neighbour);

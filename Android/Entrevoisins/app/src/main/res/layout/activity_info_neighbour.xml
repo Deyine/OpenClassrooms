@@ -84,13 +84,13 @@
                         android:text="Name"
                         android:textColor="#090909"
                         android:textSize="24sp"
-                        app:layout_constraintBottom_toTopOf="@+id/textAdresseNeighbour"
+                        app:layout_constraintBottom_toTopOf="@+id/txtAdresseNeighbour"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0" />
 
                     <ImageView
-                        android:id="@+id/imageLyt"
+                        android:id="@+id/imgLyt"
                         android:layout_width="389dp"
                         android:layout_height="1dp"
                         android:layout_marginTop="52dp"
@@ -103,7 +103,7 @@
                         app:srcCompat="@android:drawable/menuitem_background" />
 
                     <ImageView
-                        android:id="@+id/imageViewAdresse"
+                        android:id="@+id/imgvAdresse"
                         android:layout_width="26dp"
                         android:layout_height="26dp"
                         android:layout_marginStart="8dp"
@@ -113,70 +113,70 @@
                         app:srcCompat="@drawable/ic_baseline_room_24" />
 
                     <ImageView
-                        android:id="@+id/imageViewPhone"
+                        android:id="@+id/imgvPhone"
                         android:layout_width="26dp"
                         android:layout_height="26dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="16dp"
-                        app:layout_constraintEnd_toStartOf="@+id/textAdresseNeighbour"
+                        app:layout_constraintEnd_toStartOf="@+id/txtAdresseNeighbour"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageViewAdresse"
+                        app:layout_constraintTop_toBottomOf="@+id/imgvAdresse"
                         app:srcCompat="@drawable/ic_baseline_local_phone_24" />
 
                     <TextView
-                        android:id="@+id/textAdresseNeighbour"
+                        android:id="@+id/txtAdresseNeighbour"
                         android:layout_width="294dp"
                         android:layout_height="26dp"
                         android:layout_marginStart="52dp"
                         android:layout_marginTop="10dp"
                         android:text="Adresse"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageLyt" />
+                        app:layout_constraintTop_toBottomOf="@+id/imgLyt" />
 
                     <TextView
-                        android:id="@+id/textViewphoneNeighbour"
+                        android:id="@+id/txtPhoneNeighbour"
                         android:layout_width="294dp"
                         android:layout_height="26dp"
                         android:layout_marginStart="52dp"
                         android:layout_marginTop="16dp"
                         android:text="Phone"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textAdresseNeighbour" />
+                        app:layout_constraintTop_toBottomOf="@+id/txtAdresseNeighbour" />
 
                     <ImageView
-                        android:id="@+id/imageViewFaceBook"
+                        android:id="@+id/imgFaceBook"
                         android:layout_width="26dp"
                         android:layout_height="26dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="20dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageViewPhone"
+                        app:layout_constraintTop_toBottomOf="@+id/imgvPhone"
                         app:srcCompat="@drawable/ic_language_pink_24" />
 
                     <TextView
-                        android:id="@+id/textViewFaceBook"
+                        android:id="@+id/txtFaceBook"
                         android:layout_width="294dp"
                         android:layout_height="26dp"
                         android:layout_marginStart="52dp"
                         android:layout_marginTop="20dp"
                         android:text="www.Facebook.com/"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewphoneNeighbour" />
+                        app:layout_constraintTop_toBottomOf="@+id/txtPhoneNeighbour" />
 
                 </android.support.constraint.ConstraintLayout>
 
             </android.support.v7.widget.CardView>
 
             <TextView
-                android:id="@+id/txtspace"
+                android:id="@+id/txtLyt"
                 android:layout_width="match_parent"
                 android:layout_height="8dp" />
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cv_detail_mtext"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="156dp"
                 android:layout_margin="6dp"
                 android:layout_marginTop="2dp"
                 app:cardCornerRadius="5dp"
@@ -184,10 +184,10 @@
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="147dp">
+                    android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imageLytAboutMe"
+                        android:id="@+id/imgLytAboutMe"
                         android:layout_width="389dp"
                         android:layout_height="1dp"
                         android:layout_marginTop="52dp"
@@ -200,7 +200,7 @@
                         app:srcCompat="@android:drawable/menuitem_background" />
 
                     <TextView
-                        android:id="@+id/textViewAboutMe"
+                        android:id="@+id/txtAboutMeTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -215,15 +215,15 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textAboutMe"
-                        android:layout_width="331dp"
-                        android:layout_height="79dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginEnd="8dp"
+                        android:id="@+id/txtAboutMe"
+                        android:layout_width="345dp"
+                        android:layout_height="82dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginEnd="6dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageLytAboutMe" />
+                        app:layout_constraintTop_toBottomOf="@+id/imgLytAboutMe" />
                 </android.support.constraint.ConstraintLayout>
 
             </android.support.v7.widget.CardView>

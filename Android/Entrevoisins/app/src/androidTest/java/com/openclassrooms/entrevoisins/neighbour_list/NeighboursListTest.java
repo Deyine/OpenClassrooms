@@ -1,10 +1,8 @@
 package com.openclassrooms.entrevoisins.neighbour_list;
 
-import android.app.Notification;
-import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.action.KeyEventAction;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
@@ -14,7 +12,7 @@ import android.support.test.uiautomator.UiDevice;
 import android.support.test.uiautomator.UiObject2;
 import android.support.test.uiautomator.Until;
 import android.support.test.uiautomator.By;
-import android.view.KeyEvent;
+import android.support.v4.app.NotificationManagerCompat;
 
 
 import com.openclassrooms.entrevoisins.R;
@@ -32,8 +30,6 @@ import org.junit.runner.RunWith;
 
 import java.util.List;
 
-import static android.support.test.espresso.matcher.ViewMatchers.hasContentDescription;
-import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static org.junit.Assert.assertEquals;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -64,6 +60,7 @@ public class NeighboursListTest {
     private UiDevice uiDevice;
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
+    private Context mContext;
 
 
     private ListNeighbourActivity mActivity;
@@ -152,12 +149,11 @@ public class NeighboursListTest {
         .perform(RecyclerViewActions.actionOnItemAtPosition(0, ViewActions.click()));
 
         // Then : We Check if data is correct
-        onView(withId(R.id.textViewName)).check(matches(withText(fakeInfoNeighbour.getName())));
         onView(withId(R.id.textViewNameNeighbourg)).check(matches(withText(fakeInfoNeighbour.getName())));
-        onView(withId(R.id.textAdresseNeighbour)).check(matches(withText(fakeInfoNeighbour.getAddress())));
-        onView(withId(R.id.textViewphoneNeighbour)).check(matches(withText(fakeInfoNeighbour.getPhoneNumber())));
-        onView(withId(R.id.textViewFaceBook)).check(matches(withText(facebookNeighbourg)));
-        onView(withId(R.id.textAboutMe)).check(matches(withText(fakeInfoNeighbour.getAboutMe())));
+        onView(withId(R.id.txtAdresseNeighbour)).check(matches(withText(fakeInfoNeighbour.getAddress())));
+        onView(withId(R.id.txtPhoneNeighbour)).check(matches(withText(fakeInfoNeighbour.getPhoneNumber())));
+        onView(withId(R.id.txtFaceBook)).check(matches(withText(facebookNeighbourg)));
+        onView(withId(R.id.txtAboutMe)).check(matches(withText(fakeInfoNeighbour.getAboutMe())));
     }
 
     @Test
@@ -223,7 +219,6 @@ public class NeighboursListTest {
         // Then : We check texte in notification
         assertEquals(expectedTitle,title.getText());
         assertEquals(expectedText,texte.getText());
-        uiDevice.click(990,460);
 
         // We remove neighbour for other test after
         onView(withId(R.id.floatingButtonFavorie)).perform(ViewActions.click());
@@ -259,6 +254,6 @@ public class NeighboursListTest {
         // Then : We check texte in notification
         assertEquals(expectedTitle,title.getText());
         assertEquals(expectedText,texte.getText());
-        uiDevice.click(990,460);
+
     }
 }
