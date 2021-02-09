@@ -186,19 +186,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/imgLytAboutMe"
-                        android:layout_width="389dp"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="52dp"
-                        android:background="#EFEBEB"
-                        android:scaleType="centerCrop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@android:drawable/menuitem_background" />
-
                     <TextView
                         android:id="@+id/txtAboutMeTitle"
                         android:layout_width="match_parent"
@@ -214,13 +201,26 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <ImageView
+                        android:id="@+id/imgLytAboutMe"
+                        android:layout_width="389dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="52dp"
+                        android:background="#EFEBEB"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@android:drawable/menuitem_background" />
+
                     <TextView
                         android:id="@+id/txtAboutMe"
-                        android:layout_width="345dp"
-                        android:layout_height="82dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginEnd="6dp"
+                        android:layout_width="324dp"
+                        android:layout_height="76dp"
+                        android:layout_margin="6dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/imgLytAboutMe" />

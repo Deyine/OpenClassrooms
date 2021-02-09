@@ -180,9 +180,9 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                notifManager.cancelAll();
+                notifManager.cancel(NOTIF_ID);
             }
-        }, 3000);   //3 seconds
+        }, 5000);   //5 seconds
     }
 
 
@@ -213,9 +213,9 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                notifManager.cancelAll();
+                notifManager.cancel(NOTIF_ID);
             }
-        }, 3000);   //3 seconds
+        }, 5000);   //3 seconds
 
     }
 
