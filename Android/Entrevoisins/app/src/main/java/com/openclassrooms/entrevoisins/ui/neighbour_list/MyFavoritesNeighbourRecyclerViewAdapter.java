@@ -20,15 +20,20 @@ import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.openclassrooms.entrevoisins.ui.neighbour_list.MyNeighbourRecyclerViewAdapter.DETAIL_NEIGHBOUR;
+
 public class MyFavoritesNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyFavoritesNeighbourRecyclerViewAdapter.ViewHolder> {
 
     private final List<Neighbour> mNeighbours;
     private NeighbourApiService mFavApiService;
+
+
 
     public MyFavoritesNeighbourRecyclerViewAdapter(List<Neighbour> items) {
         mNeighbours = items;
@@ -65,14 +70,9 @@ public class MyFavoritesNeighbourRecyclerViewAdapter extends RecyclerView.Adapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Before Launch Activity we send information for show detail of Neighbourg
                 Intent intent = new Intent(view.getContext(),InfoNeighbourActivity.class);
-                intent.putExtra("neighbour_Id",neighbour.getId());
-                intent.putExtra("neighbour_Name",neighbour.getName());
-                intent.putExtra("neighbour_AboutMe",neighbour.getAboutMe());
-                intent.putExtra("neighbour_AvatarUrl",neighbour.getAvatarUrl());
-                intent.putExtra("neighbour_PhoneNumber",neighbour.getPhoneNumber());
-                intent.putExtra("neighbour_Adresse",neighbour.getAddress());
-                intent.putExtra("neighbour_isFavorite",neighbour.isFavorite());
+                intent.putExtra(DETAIL_NEIGHBOUR, (Serializable) neighbour);
                 ActivityCompat.startActivity(view.getContext(), intent,null);
             }
         });

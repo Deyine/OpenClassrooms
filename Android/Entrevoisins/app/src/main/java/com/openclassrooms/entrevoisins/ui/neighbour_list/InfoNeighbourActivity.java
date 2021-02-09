@@ -26,6 +26,8 @@ import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import static com.openclassrooms.entrevoisins.ui.neighbour_list.MyNeighbourRecyclerViewAdapter.DETAIL_NEIGHBOUR;
+
 
 public class InfoNeighbourActivity extends AppCompatActivity {
 
@@ -77,18 +79,9 @@ public class InfoNeighbourActivity extends AppCompatActivity {
     }
 
     private void getIncomingIntent(){
-        // Research if we have element in Intent
-        if (getIntent().hasExtra("neighbour_AvatarUrl") && getIntent().hasExtra("neighbour_Name") &&  getIntent().hasExtra("neighbour_AboutMe") && getIntent().hasExtra("neighbour_PhoneNumber") && getIntent().hasExtra("neighbour_Adresse")){
-            Long id = getIntent().getLongExtra("neighbour_Id",System.currentTimeMillis());
-            String neighbourName = getIntent().getStringExtra("neighbour_Name");
-            imageUrl = getIntent().getStringExtra("neighbour_AvatarUrl");
-            String neighbourAdresse = getIntent().getStringExtra("neighbour_Adresse");
-            String neighnourPhone = getIntent().getStringExtra("neighbour_PhoneNumber");
-            String neighbourAboutMe = getIntent().getStringExtra("neighbour_AboutMe");
-            isFavorite = getIntent().getBooleanExtra("neighbour_isFavorite",true);
-
-            neighbour = new Neighbour(id,neighbourName,imageUrl,neighbourAdresse,neighnourPhone,neighbourAboutMe,isFavorite);
-
+        neighbour = (Neighbour) getIntent().getSerializableExtra(DETAIL_NEIGHBOUR);
+        // Research if we have element in class
+        if (neighbour != null){
             name = findViewById(R.id.textViewNameNeighbourg);
             phone = findViewById(R.id.txtPhoneNeighbour);
             auboutMe = findViewById(R.id.txtAboutMe);
@@ -96,10 +89,10 @@ public class InfoNeighbourActivity extends AppCompatActivity {
             facebook = findViewById(R.id.txtFaceBook);
 
             // Set Texte and Image
-            auboutMe.setText(neighbourAboutMe);
-            name.setText(neighbourName);
-            phone.setText(neighnourPhone);
-            adresse.setText(neighbourAdresse);
+            auboutMe.setText(neighbour.getAboutMe());
+            name.setText(neighbour.getName());
+            phone.setText(neighbour.getPhoneNumber());
+            adresse.setText(neighbour.getAddress());
             facebook.setText("www.Facebook.com/" + name.getText());
 
             imageAvatar = findViewById(R.id.neighbour_Avatar);
@@ -109,19 +102,19 @@ public class InfoNeighbourActivity extends AppCompatActivity {
             collapsingToolbarLayout = findViewById(R.id.collapseLayout);
 
             setSupportActionBar(toolbar);
-            getSupportActionBar().setTitle(neighbourName);
+            getSupportActionBar().setTitle(neighbour.getName());
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             Glide.with(this)
                     .asBitmap()
-                    .load(imageUrl)
+                    .load(neighbour.getAvatarUrl())
                     .into(imageAvatar);
 
 
 
             btnFavorie = findViewById(R.id.floatingButtonFavorie);
             // We check if Neighbours is favorie or not
-            if (isFavorite) {
+            if (neighbour.isFavorite()) {
                 btnFavorie.setImageResource(R.drawable.ic_baseline_star_yellow_24);
                 btnFavorie.hide();
                 btnFavorie.show();
@@ -138,7 +131,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         btnFavorie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!isFavorite){
+                if(!neighbour.isFavorite()){
                     btnFavorie.setImageResource(R.drawable.ic_baseline_star_yellow_24);
                     btnFavorie.hide();
                     btnFavorie.show();
