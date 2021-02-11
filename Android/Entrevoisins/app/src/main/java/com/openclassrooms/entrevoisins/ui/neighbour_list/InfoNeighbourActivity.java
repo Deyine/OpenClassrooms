@@ -39,13 +39,10 @@ public class InfoNeighbourActivity extends AppCompatActivity {
     private TextView facebook;
     private ImageView imageAvatar;
     private FloatingActionButton btnFavorie;
-    private Boolean isFavorite;
     private NeighbourApiService mFavApiService;
     private Neighbour neighbour;
-    private String imageUrl;
     private static final int NOTIF_ID = 123;
     private Toolbar toolbar;
-    private CollapsingToolbarLayout collapsingToolbarLayout;
 
 
     @Override
@@ -99,7 +96,6 @@ public class InfoNeighbourActivity extends AppCompatActivity {
 
             //Set Toolbar and text
             toolbar = findViewById(R.id.toolbar);
-            collapsingToolbarLayout = findViewById(R.id.collapseLayout);
 
             setSupportActionBar(toolbar);
             getSupportActionBar().setTitle(neighbour.getName());
@@ -109,8 +105,6 @@ public class InfoNeighbourActivity extends AppCompatActivity {
                     .asBitmap()
                     .load(neighbour.getAvatarUrl())
                     .into(imageAvatar);
-
-
 
             btnFavorie = findViewById(R.id.floatingButtonFavorie);
             // We check if Neighbours is favorie or not
@@ -126,6 +120,7 @@ public class InfoNeighbourActivity extends AppCompatActivity {
 
         }
     }
+    
     //Click on favorie button
     private void fabOnclickListner(){
         btnFavorie.setOnClickListener(new View.OnClickListener() {
@@ -153,7 +148,6 @@ public class InfoNeighbourActivity extends AppCompatActivity {
 
         EventBus.getDefault().post(new AddNeighbourgFavorisEvent(neighbour));
 
-        isFavorite = true;
         Snackbar.make(view, "Vous venez d'ajouter " + name.getText() + " à vos voisins favoris !", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
 
@@ -178,15 +172,12 @@ public class InfoNeighbourActivity extends AppCompatActivity {
         }, 5000);   //5 seconds
     }
 
-
-
     // Delete Neighbours in favoris list
     private void deleteFavoriteNeighbour(View view) {
         Context context = InfoNeighbourActivity.this;
 
         Snackbar.make(view, "Vous venez de retirer " + name.getText() + " de vos voisins favoris !", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-        isFavorite = false;
         EventBus.getDefault().post(new DeleteNeighbourFavorisEvent(neighbour));
 
         //Show notification when we remove neighbour in favoris list
