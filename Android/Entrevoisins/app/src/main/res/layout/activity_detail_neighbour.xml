@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <ImageView
+        android:id="@+id/avatarDetail"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backButtonDetail"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="15dp"
+        app:layout_constraintTop_toTopOf="@id/avatarDetail"
+        app:layout_constraintLeft_toLeftOf="@+id/avatarDetail"
+        android:src="@drawable/ic_back_button_24dp" />
+    <TextView
+        android:id="@+id/nameTitreDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Titre"
+        android:textColor="@color/colorTitreDetail"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="@id/avatarDetail"
+        android:textSize="30sp" />
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/frame1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/avatarDetail"
+        android:layout_margin="10dp">
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/nameDetail"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:text="Titre"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="482dp"
+                android:layout_height="1dp"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:background="@color/colorSpaceLigne" />
+
+            <ImageView
+                android:id="@+id/icon_address"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:src="@drawable/ic_address_24dp"
+                android:layout_margin="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/addressDetail"
+                android:layout_row="2"
+                android:layout_column="1"
+                android:text="Ville"
+                android:layout_margin="10dp" />
+
+            <ImageView
+                android:id="@+id/icon_phoneNumber"
+                android:layout_row="3"
+                android:layout_column="0"
+                android:src="@drawable/ic_phone_number_24dp"
+                android:layout_margin="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/phoneNumberDetail"
+                android:layout_row="3"
+                android:layout_column="1"
+                android:text="Telephone"
+                android:layout_margin="10dp" />
+
+            <ImageView
+                android:id="@+id/icon_aboutMe"
+                android:layout_row="4"
+                android:layout_column="0"
+                android:src="@drawable/ic_address_24dp"
+                android:layout_margin="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/socialNetworkD"
+                android:layout_row="4"
+                android:layout_column="1"
+                android:text="Réseaux sociaux"
+                android:layout_margin="10dp"/>
+
+        </GridLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/frame2"
+        app:layout_constraintTop_toBottomOf="@id/frame1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_columnSpan="2"
+                android:text="A propos de moi"
+                android:layout_margin="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginEnd="1dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorSpaceLigne"/>
+            <TextView
+                android:id="@+id/aboutMeDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_columnSpan="2"
+                android:text="Texte A propos de moi"
+                android:layout_margin="10dp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>

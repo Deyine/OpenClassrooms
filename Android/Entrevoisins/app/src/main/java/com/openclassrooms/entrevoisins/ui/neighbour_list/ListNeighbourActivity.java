@@ -2,18 +2,20 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.Button;
 
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.events.ClickOnNeighbourEvent;
+import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ListNeighbourActivity extends AppCompatActivity {
+public class ListNeighbourActivity extends AppCompatActivity implements ClickOnNeighbourEvent {
 
     // UI Components
     @BindView(R.id.tabs)
@@ -24,6 +26,7 @@ public class ListNeighbourActivity extends AppCompatActivity {
     ViewPager mViewPager;
 
     ListNeighbourPagerAdapter mPagerAdapter;
+    public static FragmentActivity activityContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +40,15 @@ public class ListNeighbourActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
+        activityContext = this;
     }
 
     @OnClick(R.id.add_neighbour)
     void addNeighbour() {
         AddNeighbourActivity.navigate(this);
+    }
+
+    public void clickOnNeighbour(Neighbour neighbourCliqued) {
+        DetailNeighbourActivity.navigate(activityContext,neighbourCliqued);
     }
 }
