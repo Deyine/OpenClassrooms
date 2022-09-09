@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF80AB</color>
     <color name="colorSpaceLigne">#F3EFEF</color>
     <color name="colorTitreDetail">#FFFFFF</color>
+    <color name="colorFondFavoriteButton">#FFFFFF</color>
 </resources>

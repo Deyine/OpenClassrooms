@@ -33,15 +33,18 @@ public class NeighbourFragment extends Fragment {
      * Create and return a new instance
      * @return @{@link NeighbourFragment}
      */
-    public static NeighbourFragment newInstance() {
-        NeighbourFragment fragment = new NeighbourFragment();
+    public static NeighbourFragment newInstance(NeighbourApiService neighbourApiService) {
+        NeighbourFragment fragment = new NeighbourFragment(neighbourApiService);
         return fragment;
+    }
+
+    public NeighbourFragment(NeighbourApiService neighbourApiService) {
+        mApiService = neighbourApiService;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mApiService = DI.getNeighbourApiService();
     }
 
     @Override

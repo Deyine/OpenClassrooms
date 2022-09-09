@@ -8,14 +8,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.events.AddFavoriteNeighbour;
 import com.openclassrooms.entrevoisins.events.ClickOnNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.service.NeighbourApiService;
+import com.openclassrooms.entrevoisins.service.NeighbourFavoriteList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ListNeighbourActivity extends AppCompatActivity implements ClickOnNeighbourEvent {
+public class ListNeighbourActivity extends AppCompatActivity implements ClickOnNeighbourEvent, AddFavoriteNeighbour {
 
     // UI Components
     @BindView(R.id.tabs)
@@ -27,6 +30,7 @@ public class ListNeighbourActivity extends AppCompatActivity implements ClickOnN
 
     ListNeighbourPagerAdapter mPagerAdapter;
     public static FragmentActivity activityContext;
+    public static NeighbourApiService neighbourFavoritesList = new NeighbourFavoriteList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,5 +54,10 @@ public class ListNeighbourActivity extends AppCompatActivity implements ClickOnN
 
     public void clickOnNeighbour(Neighbour neighbourCliqued) {
         DetailNeighbourActivity.navigate(activityContext,neighbourCliqued);
+    }
+
+    @Override
+    public void clickAddFavorite(Neighbour neighbourAdd) {
+        neighbourFavoritesList.createNeighbour(neighbourAdd);
     }
 }

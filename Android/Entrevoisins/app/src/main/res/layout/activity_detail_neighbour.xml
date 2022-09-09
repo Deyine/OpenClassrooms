@@ -144,4 +144,14 @@
                 android:layout_margin="10dp" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_favorite_neighbour"
+        app:backgroundTint="@color/colorFondFavoriteButton"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        app:layout_constraintTop_toBottomOf="@id/nameTitreDetail"
+        app:layout_constraintRight_toRightOf="@id/frame1"
+        app:srcCompat="@drawable/ic_favorite_add_24dp" />
+
 </android.support.constraint.ConstraintLayout>
