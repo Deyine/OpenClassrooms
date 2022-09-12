@@ -33,6 +33,8 @@ public class DetailNeighbourActivity extends AppCompatActivity {
     TextView phoneInputView;
     @BindView(R.id.addressDetail)
     TextView addressView;
+    @BindView(R.id.socialNetworkDetail)
+    TextView socialNetwork;
     @BindView(R.id.aboutMeDetail)
     TextView aboutMeView;
 
@@ -51,6 +53,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         nameView.setText(neighbour.getName());
         phoneInputView.setText(neighbour.getPhoneNumber());
         addressView.setText(neighbour.getAddress());
+        socialNetwork.setText(neighbour.getSocialNetwork());
         aboutMeView.setText(neighbour.getAboutMe());
     }
 

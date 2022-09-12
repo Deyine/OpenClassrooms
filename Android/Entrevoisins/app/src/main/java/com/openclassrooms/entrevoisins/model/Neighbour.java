@@ -22,6 +22,9 @@ public class Neighbour {
     /** Phone number */
     private String phoneNumber;
 
+    /** Phone number */
+    private String socialNetwork;
+
     /** About me */
     private String aboutMe;
 
@@ -32,12 +35,13 @@ public class Neighbour {
      * @param avatarUrl
      */
     public Neighbour(long id, String name, String avatarUrl, String address,
-                     String phoneNumber, String aboutMe) {
+                     String phoneNumber, String socialNetwork, String aboutMe) {
         this.id = id;
         this.name = name;
         this.avatarUrl = avatarUrl;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.socialNetwork = socialNetwork;
         this.aboutMe = aboutMe;
     }
 
@@ -79,6 +83,14 @@ public class Neighbour {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getSocialNetwork() {
+        return socialNetwork;
+    }
+
+    public void setSocialNetwork(String socialNetwork) {
+        this.socialNetwork = socialNetwork;
     }
 
     public String getAboutMe() {
