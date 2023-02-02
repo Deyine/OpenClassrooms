@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".NeighbourDetailActivity"
+            android:name=".ui.neighbour_list.NeighbourDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.neighbour_list.AddNeighbourActivity"

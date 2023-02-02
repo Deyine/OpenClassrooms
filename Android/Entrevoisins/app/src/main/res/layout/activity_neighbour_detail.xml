@@ -9,8 +9,7 @@
     <ImageView
         android:id="@+id/detail_avatar"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="centerCrop"
+        android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,12 +75,12 @@
                         android:id="@+id/detail_info_text_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="28sp"
-                        android:text="Caroline"
-                        android:textColor="@color/colorHeadingDetail"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_marginBottom="8dp"
+                        android:text="Caroline"
+                        android:textColor="@color/colorHeadingDetail"
+                        android:textSize="28sp" />
 
                     <View
                         android:id="@+id/detail_info_divider"
@@ -120,6 +119,7 @@
                                 app:layout_constraintTop_toTopOf="@+id/detail_info_AddressImg" />
 
                         </android.support.constraint.ConstraintLayout>
+
                         <android.support.constraint.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -146,6 +146,7 @@
                                 app:layout_constraintTop_toTopOf="@+id/detail_info_phoneImg" />
 
                         </android.support.constraint.ConstraintLayout>
+
                         <android.support.constraint.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -178,19 +179,15 @@
                 </LinearLayout>
             </android.support.constraint.ConstraintLayout>
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="12dp" />
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="12dp"
+                android:layout_margin="12dp"
                 android:layout_weight="4"
                 android:background="@drawable/white_detail_block"
                 android:elevation="6dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -200,12 +197,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="28sp"
-                        android:text="A propos de moi"
-                        android:textColor="@color/colorHeadingDetail"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_marginBottom="8dp"
+                        android:text="A propos de moi"
+                        android:textColor="@color/colorHeadingDetail"
+                        android:textSize="28sp" />
 
                     <View
                         android:id="@+id/divider2"
