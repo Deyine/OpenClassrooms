@@ -21,6 +21,7 @@ import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -30,8 +31,16 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
 
     private final List<Neighbour> mNeighbours;
 
-    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items) {
-        mNeighbours = items;
+    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, boolean isFavorite) {
+        if(isFavorite) {
+            mNeighbours = new ArrayList<>();
+            for(Neighbour item: items){
+                if(item.getIsFavorite()) mNeighbours.add(item);
+            }
+        }
+        else {
+            mNeighbours = items;
+        }
     }
 
     @Override

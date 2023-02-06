@@ -36,7 +36,7 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_neighbour_detail);
         ButterKnife.bind(this);
-        mNeighbour = (Neighbour) getIntent().getSerializableExtra("Neighbour");
+        mNeighbour = (Neighbour) getIntent().getParcelableExtra("Neighbour");
         mAvatarLableName.setText(mNeighbour.getName());
         mInfoName.setText(mNeighbour.getName());
         mInfoAddress.setText(mNeighbour.getAddress());
