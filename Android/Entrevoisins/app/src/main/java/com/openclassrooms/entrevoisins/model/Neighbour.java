@@ -9,7 +9,7 @@ import java.util.Objects;
 /**
  * Model object representing a Neighbour
  */
-public class Neighbour implements Parcelable {
+public class Neighbour{
     /** Identifier */
     private long id;
 
@@ -48,7 +48,7 @@ public class Neighbour implements Parcelable {
         this.aboutMe = aboutMe;
     }
 
-    protected Neighbour(Parcel in) {
+    /*protected Neighbour(Parcel in) {
         id = in.readLong();
         name = in.readString();
         avatarUrl = in.readString();
@@ -56,9 +56,9 @@ public class Neighbour implements Parcelable {
         phoneNumber = in.readString();
         aboutMe = in.readString();
         isFavorite = in.readByte() != 0;
-    }
+    }*/
 
-    public static final Creator<Neighbour> CREATOR = new Creator<Neighbour>() {
+    /*public static final Creator<Neighbour> CREATOR = new Creator<Neighbour>() {
         @Override
         public Neighbour createFromParcel(Parcel in) {
             return new Neighbour(in);
@@ -68,7 +68,7 @@ public class Neighbour implements Parcelable {
         public Neighbour[] newArray(int size) {
             return new Neighbour[size];
         }
-    };
+    };*/
 
     public long getId() {
         return id;
@@ -125,7 +125,7 @@ public class Neighbour implements Parcelable {
         isFavorite = favorite;
     }
 
-    @Override
+    /*@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -152,5 +152,5 @@ public class Neighbour implements Parcelable {
         parcel.writeString(phoneNumber);
         parcel.writeString(aboutMe);
         parcel.writeByte((byte) (isFavorite ? 1 : 0));
-    }
+    }*/
 }

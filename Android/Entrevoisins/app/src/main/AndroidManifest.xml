@@ -14,6 +14,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".ui.neighbour_list.NeighbourDetailActivity"
+            android:parentActivityName=".ui.neighbour_list.ListNeighbourActivity"
             android:exported="false" />
         <activity
             android:name=".ui.neighbour_list.AddNeighbourActivity"
