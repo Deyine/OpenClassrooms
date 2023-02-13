@@ -39,25 +39,7 @@ public class ListNeighbourActivity extends AppCompatActivity {
         mPagerAdapter = new ListNeighbourPagerAdapter(this, getSupportFragmentManager());
         mViewPager.setAdapter(mPagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-        mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager){//checks what tab you are on
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                if(tab.getPosition() == 0) {
-                    System.out.println("tabselected: " + tab.getPosition());
-                }
-                else{
-                    System.out.println("tabselected: " + tab.getPosition());
-                    //mViewPager.setAdapter(mPagerAdapter);
-                }
-                mViewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {}
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {}
-        });
+        mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
     }
 

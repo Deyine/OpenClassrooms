@@ -64,31 +64,25 @@ public class NeighbourFragment extends Fragment {
      */
     private void initList() {
         mNeighbours = mApiService.getNeighbours();
-        //mFavoriteNeighbours = new ArrayList<>();
 
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours, choice !=0));
-        /*if(choice == 0) mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
-        else mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mFavoriteNeighbours));*/
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        System.out.println("resume fragrement");
         initList();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        System.out.println("start fragrement");
         EventBus.getDefault().register(this);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        System.out.println("stop fragrement");
         EventBus.getDefault().unregister(this);
     }
 

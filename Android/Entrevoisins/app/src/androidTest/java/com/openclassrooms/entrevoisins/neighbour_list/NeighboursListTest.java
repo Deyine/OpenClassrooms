@@ -105,12 +105,12 @@ public class NeighboursListTest {
         onView(allOf(withId(R.id.list_neighbours), isDisplayed())).check(withItemCount(0));
         onView(allOf(withId(R.id.list_neighbours), isDisplayed())).perform(swipeRight());
         Thread.sleep(500);
-        //adds a favorite neighbour
+        //adds a favorite neighbour by clicking on the fab button
         onView(allOf(withId(R.id.list_neighbours), isDisplayed())).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         Neighbour neighbour = mNeighbours.get(0);
         onView(withId(R.id.detail_button_favorite)).perform(click());
         onView(withContentDescription(R.string.abc_action_bar_up_description)).perform(click());//go back home page
-        //Checks the the favorite list has one member
+        //Checks the the favorite list has one member and that it is the correct neighbour
         onView(allOf(withId(R.id.list_neighbours), isDisplayed())).perform(swipeLeft());
         Thread.sleep(500);
         onView(allOf(withId(R.id.list_neighbours), isDisplayed())).check(withItemCount(1));
