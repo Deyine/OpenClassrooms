@@ -30,7 +30,7 @@ Cette application consiste à:
 * appuyer sur le bouton Run
 
 
-![Image](/images/ExecuterCompiler.JPG)
+![Image](images/ExecuterCompiler.JPG)
 
 ## Crédits
 Ce code est basé sur le code créé par Deyine d’Openclassrooms.
