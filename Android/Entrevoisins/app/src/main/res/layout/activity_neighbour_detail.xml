@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.neighbour_list.NeighbourDetailActivity">
+
+    <ImageView
+        android:id="@+id/detail_avatar"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/detail_avatar_lable_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="28dp"
+        android:textSize="36sp"
+        android:text="Caroline"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/detail_avatar"
+        app:layout_constraintStart_toStartOf="@+id/detail_avatar" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/detail_button_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:clickable="true"
+        app:backgroundTint="#FAFAFA"
+        android:contentDescription="favorite"
+        app:layout_constraintBottom_toBottomOf="@+id/detail_avatar"
+        app:layout_constraintEnd_toEndOf="@+id/detail_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/detail_avatar"
+        app:srcCompat="@drawable/ic_star_yellow_24dp" />
+
+    <ImageButton
+        android:id="@+id/detail_back_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@null"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:scaleX="1.1"
+        android:scaleY="1.1"
+        android:contentDescription="home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_arrow_back_24" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout_UserInfo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_avatar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#E1E1F1"
+            android:orientation="vertical">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/white_detail_block"
+                android:elevation="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingTop="18dp">
+
+                    <TextView
+                        android:id="@+id/detail_info_text_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Caroline"
+                        android:textColor="@color/colorHeadingDetail"
+                        android:textSize="28sp" />
+
+                    <View
+                        android:id="@+id/detail_info_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <android.support.constraint.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/detail_info_AddressImg"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/baseline_location_on_24" />
+
+                            <TextView
+                                android:id="@+id/detail_info_text_address"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:text="Saint pierre du mont à 5km"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/detail_info_AddressImg"
+                                app:layout_constraintStart_toEndOf="@+id/detail_info_AddressImg"
+                                app:layout_constraintTop_toTopOf="@+id/detail_info_AddressImg" />
+
+                        </android.support.constraint.ConstraintLayout>
+
+                        <android.support.constraint.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/detail_info_phoneImg"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/baseline_phone_24" />
+
+                            <TextView
+                                android:id="@+id/detail_info_text_phone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:text="+33 6 86 90 14"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/detail_info_phoneImg"
+                                app:layout_constraintStart_toEndOf="@+id/detail_info_phoneImg"
+                                app:layout_constraintTop_toTopOf="@+id/detail_info_phoneImg" />
+
+                        </android.support.constraint.ConstraintLayout>
+
+                        <android.support.constraint.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/detail_info_urlImg"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/baseline_language_24" />
+
+                            <TextView
+                                android:id="@+id/detail_info_text_url"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:text="www.facebook.fr/caroline"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/detail_info_urlImg"
+                                app:layout_constraintStart_toEndOf="@+id/detail_info_urlImg"
+                                app:layout_constraintTop_toTopOf="@+id/detail_info_urlImg" />
+
+                        </android.support.constraint.ConstraintLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.constraint.ConstraintLayout>
+
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="12dp"
+                android:layout_weight="1.2"
+                android:background="@drawable/white_detail_block"
+                android:elevation="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingTop="18dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="A propos de moi"
+                        android:textColor="@color/colorHeadingDetail"
+                        android:textSize="28sp" />
+
+                    <View
+                        android:id="@+id/detail_aboutme_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider" />
+
+                    <TextView
+                        android:id="@+id/detail_info_text_aboutMe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="14dp"
+                        android:text="Bonjour !Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner !J'aime les jeux de cartes tels la belote et le tarot.. " />
+
+                </LinearLayout>
+
+            </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

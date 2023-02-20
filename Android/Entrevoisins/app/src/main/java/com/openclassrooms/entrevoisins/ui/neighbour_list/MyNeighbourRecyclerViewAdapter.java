@@ -1,5 +1,7 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
+import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -25,8 +28,16 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
 
     private final List<Neighbour> mNeighbours;
 
-    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items) {
-        mNeighbours = items;
+    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, boolean isFavorite) {
+        if(isFavorite) {
+            mNeighbours = new ArrayList<>(); //empty List
+            for(Neighbour item: items){
+                if(item.getIsFavorite()) mNeighbours.add(item);//add favorite to List
+            }
+        }
+        else {
+            mNeighbours = items;//all Neighbours
+        }
     }
 
     @Override
@@ -51,6 +62,14 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
             }
         });
+        holder.cl_neighbour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), NeighbourDetailActivity.class);
+                intent.putExtra("Neighbour", neighbour);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -65,6 +84,8 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         public TextView mNeighbourName;
         @BindView(R.id.item_list_delete_button)
         public ImageButton mDeleteButton;
+        @BindView(R.id.cl_neighbour)
+        public ConstraintLayout cl_neighbour;
 
         public ViewHolder(View view) {
             super(view);
