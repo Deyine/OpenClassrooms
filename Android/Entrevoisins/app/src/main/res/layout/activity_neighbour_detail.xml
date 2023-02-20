@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/detail_avatar"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,10 +35,27 @@
         android:layout_marginEnd="12dp"
         android:clickable="true"
         app:backgroundTint="#FAFAFA"
+        android:contentDescription="favorite"
         app:layout_constraintBottom_toBottomOf="@+id/detail_avatar"
         app:layout_constraintEnd_toEndOf="@+id/detail_avatar"
         app:layout_constraintTop_toBottomOf="@+id/detail_avatar"
         app:srcCompat="@drawable/ic_star_yellow_24dp" />
+
+    <ImageButton
+        android:id="@+id/detail_back_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@null"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:scaleX="1.1"
+        android:scaleY="1.1"
+        android:contentDescription="home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_arrow_back_24" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout_UserInfo"
@@ -61,7 +78,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginRight="12dp"
-                android:layout_weight="3"
+                android:layout_weight="1"
                 android:background="@drawable/white_detail_block"
                 android:elevation="6dp">
 
@@ -96,7 +113,7 @@
                         <android.support.constraint.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="12dp"
+                            android:layout_margin="8dp"
                             android:layout_weight="1">
 
                             <ImageView
@@ -123,7 +140,7 @@
                         <android.support.constraint.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="12dp"
+                            android:layout_margin="8dp"
                             android:layout_weight="1">
 
                             <ImageView
@@ -150,7 +167,7 @@
                         <android.support.constraint.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="12dp"
+                            android:layout_margin="8dp"
                             android:layout_weight="1">
 
                             <ImageView
@@ -184,7 +201,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="12dp"
-                android:layout_weight="4"
+                android:layout_weight="1.2"
                 android:background="@drawable/white_detail_block"
                 android:elevation="6dp">
 
@@ -205,7 +222,7 @@
                         android:textSize="28sp" />
 
                     <View
-                        android:id="@+id/divider2"
+                        android:id="@+id/detail_aboutme_divider"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="?android:attr/listDivider" />
@@ -214,7 +231,7 @@
                         android:id="@+id/detail_info_text_aboutMe"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
+                        android:layout_margin="14dp"
                         android:text="Bonjour !Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner !J'aime les jeux de cartes tels la belote et le tarot.. " />
 
                 </LinearLayout>

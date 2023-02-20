@@ -1,7 +1,5 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,12 +38,12 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_neighbour_detail);
         ButterKnife.bind(this);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().hide();
+
         mApiService = DI.getNeighbourApiService();
 
-        mNeighbour = getIntent().getParcelableExtra("Neighbour");
-
-        checkFavoriteStatus();
+        mNeighbour = getIntent().getParcelableExtra("Neighbour");//retrieve Neighbour
+        //fill in neighbour detail
         mAvatarLableName.setText(mNeighbour.getName());
         mInfoName.setText(mNeighbour.getName());
         mInfoAddress.setText(mNeighbour.getAddress());
@@ -56,6 +54,8 @@ public class NeighbourDetailActivity extends AppCompatActivity {
                 .load(mNeighbour.getAvatarUrl()) // image url
                 .centerCrop()
                 .into(mAvatar);
+
+        checkFavoriteStatus();//checks isFavorite status in order to select button image
     }
     @OnClick(R.id.detail_button_favorite)
     void changeFavorite() {//inverts the boolean favorite attribute of current neighbour
@@ -72,6 +72,10 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         else{
             fab.setImageResource(R.drawable.ic_star_border_yellow_24dp);
         }
+    }
+    @OnClick(R.id.detail_back_arrow)
+    void backHome() {
+        finish();
     }
 
 }

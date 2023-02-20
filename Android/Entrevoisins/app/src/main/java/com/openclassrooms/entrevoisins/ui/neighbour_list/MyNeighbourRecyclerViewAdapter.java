@@ -30,13 +30,13 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
 
     public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, boolean isFavorite) {
         if(isFavorite) {
-            mNeighbours = new ArrayList<>();
+            mNeighbours = new ArrayList<>(); //empty List
             for(Neighbour item: items){
-                if(item.getIsFavorite()) mNeighbours.add(item);
+                if(item.getIsFavorite()) mNeighbours.add(item);//add favorite to List
             }
         }
         else {
-            mNeighbours = items;
+            mNeighbours = items;//all Neighbours
         }
     }
 

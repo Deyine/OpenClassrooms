@@ -2,7 +2,6 @@
 package com.openclassrooms.entrevoisins.neighbour_list;
 
 import android.support.test.espresso.contrib.RecyclerViewActions;
-import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -18,14 +17,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.swipeLeft;
 import static android.support.test.espresso.action.ViewActions.swipeRight;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
-import static android.support.test.espresso.matcher.ViewMatchers.hasChildCount;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
@@ -109,7 +106,7 @@ public class NeighboursListTest {
         onView(allOf(withId(R.id.list_neighbours), isDisplayed())).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         Neighbour neighbour = mNeighbours.get(0);
         onView(withId(R.id.detail_button_favorite)).perform(click());
-        onView(withContentDescription(R.string.abc_action_bar_up_description)).perform(click());//go back home page
+        onView(withId(R.id.detail_back_arrow)).perform(click());//go back home page
         //Checks the the favorite list has one member and that it is the correct neighbour
         onView(allOf(withId(R.id.list_neighbours), isDisplayed())).perform(swipeLeft());
         Thread.sleep(500);

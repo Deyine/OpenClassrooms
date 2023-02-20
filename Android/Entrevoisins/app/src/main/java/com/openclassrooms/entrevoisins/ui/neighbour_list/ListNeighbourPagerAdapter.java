@@ -20,7 +20,6 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
      */
     @Override
     public Fragment getItem(int position) {
-        System.out.println("fragement Position: " + position);
         return NeighbourFragment.newInstance(position);
     }
 
